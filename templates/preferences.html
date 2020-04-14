@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+
+<table>
+    <thead>
+    <tr>
+        <th>mid</th>        
+        <th>name</th>
+        <th>genre</th>
+    </tr>
+    </thead>    
+    <tr>
+        <td width="20%"> {{movie['mid']}} </td>
+        <td width="20%">{{movie['name']}}</td>
+        <td width="20%">{{movie['genre']}}</td>
+    </tr> 
+<table>
+
+<form action="{{ url_for('preferences') }}" method="POST" class="preference-form">
+<table>
+    <thead>
+        <tr>
+            <th>num_tickets</th>        
+            <th>time</th>
+            <th>date</th>
+            <th>zip</th>
+        </tr>
+        </thead> 
+            <tr>
+            <td width="20%"> <input type="text" name="num_tickets" placeholder="{{preference['num_tickets']}}"/> </td>
+            <td width="20%"> <input type="text" name="time" placeholder="{{preference['time']}}"/> </td>
+            <td width="20%"> <input type="text" name="date" placeholder="{{preference['date']}}"/> </td>
+            <td width="20%"> <input type="text" name="zip" placeholder="{{preference['zip']}}"/> </td>
+            <td>
+                <button type="submit"> Submit Preference </button>
+            </td>
+            </tr>   
+</table>
+</form>
+</html>
+

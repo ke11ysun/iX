@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+
+<form action="{{ url_for('showings') }}" method="POST" class="showing-list-form">
+<table>
+    <thead>
+    <tr>
+        <th>sid</th>
+        <th>date</th>        
+        <th>time</th>
+        <th>cinema</th> 
+        <th>seats</th> 
+        <th>price</th>     
+    </tr>
+    </thead>
+    <ol>
+        {%for i in range(len)%}
+            <tr>
+            <td width="20%"> {{showings[i]['sid']}} </td>
+            <td width="20%">{{showings[i]['date']}}</td>
+            <td width="20%">{{showings[i]['time']}}</td>
+            <td width="20%">{{showings[i]['zip']}}</td>
+            <td width="20%">{{showings[i]['selected_seats']}}</td>
+            <td width="20%">{{showings[i]['price']}}</td>
+            <td>
+                <button type="submit" name="sid_price" value="{{showings[i]['sid'] + '+' + showings[i]['price'] | string}}"> Choose </button>
+            </td>
+            </tr>   
+        {%endfor%}
+    </ol>  
+</table>
+</form>
+</html>
+

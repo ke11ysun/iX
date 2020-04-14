@@ -10,9 +10,14 @@
 
     <h1> Cohesive and what what experience </h1>
     <p> Get Started </p>
+    <form action='{{ url_for('.login') }}' method="POST">
+      <button type="button" onclick="window.location.href='{{ url_for('login') }}';">Login
+      </button>
+    </form>
 
     <a href='{{ url_for('about') }}'> About </a>
     
     <!-- {% endblock %} -->
-  </body>s
+  </body>
 </html>
+

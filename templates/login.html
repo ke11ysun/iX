@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <title>Login</title>
+      <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/formMain.css') }}"> -->
+</head>
+<body>
+ <div class="login-page">
+    <h2>Please Login</h2>
+  <div class="form">
+    <form method="POST" class="login-form">
+      <input type="text" name="username" placeholder="username"/>
+      <input type="password" name="password" placeholder="password"/>
+      <button type="submit">login</button>
+    </form>
+  </div>
+    {% if error %}
+        <p class="error"><strong> Error: </strong> {{ error }}
+    {% endif %}
+</div>
+</body>
+</html>
