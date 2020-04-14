@@ -6,17 +6,18 @@ request.form.get(xxx) xxx should be tag's "name"
 html:form = py:preference
 html:tickets = py:showings
 
-redirect's data is for lists or chosen
+redirect's data is for lists or chosen -> all changed to save in session (otherwise shows in query string)
 render_template's data is for html
 
 tmp use redirect with param
 see if session messed up then change to pass param (like retrieve_user)
-
 
 for errors, in html:
 {% if error %}
     <p class="error"><strong> Error: </strong> {{ error }}
 {% endif %}
 
+session variables are changed to string
 
-<!-- <input type="hidden" name="hidden" value="{{movies[i]['mid']}}"> -->
+tmp db return type: dict
+tmp passing between funcs: list 
