@@ -3,6 +3,8 @@
 # cmd "python3 main.py"
 
 from flask import Flask, render_template, redirect, request, session, url_for
+from util import recommend, augment_preference, filter_shows, select_seats
+from util import get_user, get_movie
 
 app = Flask(__name__)
 
@@ -13,7 +15,26 @@ def index():
 
 @app.route("/explore", methods=['POST', 'GET'])
 def explore():
-    return render_template("explore.html")
+    # if 'recommended_mids' in session:
+    #     mids = session['recommended_mids']
+    #     print('has mids')
+    # else:
+    #     print('no mids')
+    #     return render_template('explore.html', error="no mids")
+    movies = []
+    print('before for')
+    mids = ['m001', 'm002', 'm003']
+    for mid in mids:
+        movie = {}
+        entity = get_movie(mid)
+        movie['mid'] = mid
+        movie['name'] = entity['name']
+        movie['genre'] = entity['genre']
+        # etc
+        print('=======')
+        print(len(movies))
+        movies.append(movie)
+    return render_template("explore.html", len=len(movies), movies=movies)
 
 @app.route("/form", methods=['POST', 'GET'])
 def form():
