@@ -1,23 +1,146 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>iX by Team i</title>
-  </head>
-  <body>
-    <!-- {% extends "template.html" %} -->
-    <!-- {% block content %} -->
+<html lang="zxx">
 
-    <h1> Cohesive and what what experience </h1>
-    <p> Get Started </p>
-    <form action='{{ url_for('.login') }}' method="POST">
-      <button type="button" onclick="window.location.href='{{ url_for('login') }}';">Login
-      </button>
-    </form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Hazze Template">
+    <meta name="keywords" content="Hazze, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hazze | Template</title>
 
-    <a href='{{ url_for('about') }}'> About </a>
-    
-    <!-- {% endblock %} -->
-  </body>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="logo">
+                        <a href="#">
+                            <img src="/static/img/ix.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-10 col-md-10">
+                    <div class="main-menu mobile-menu">
+                        <ul>
+                            <li class="active"><a href="./">Home</a></li>
+                            <li><a href="./explore">Explore</a></li>
+                            <li><a href="./inprogress">In Progress</a></li>
+                            <li><a href="./purchased">Purchased</a>
+                            </li>
+                            <!-- <li><a href="./contact.html">Contact</a></li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Hero Section Begin -->
+    <section class="hero-section set-bg" data-setbg="/static/img/woman.jpg">
+        <div class="container">
+            <div class="row col-lg-8">
+                    <div class="hs-text">
+                        <h2>Your fastest movie and event ticket agent</h3>
+                        <p>Planning movies and event outings for you and your friends in one minute.</p>
+                        <a href="./explore" class="primary-btn">Get Started</a>
+                    </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- About Us Section Begin -->
+    <!-- <section class="about-us-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="as-pic">
+                        <img src="img/about-us.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="as-text">
+                        <div class="section-title">
+                            <span>About us</span>
+                            <h2>About Story</h2>
+                        </div>
+                        <p class="f-para"></p>
+                        <p class="s-para">We are creating a seamless and cohesive ticket purchase experience that 
+                            helps event-goers quickly find their most intended tickets, with no need for them to choose and decide among multiple options. By leveraging AI and ML techniques, 
+                            our intelligent ticket agent identifies customer intention and recommends ticket options that 
+                            best satisfy the whole going group. Our solution helps people navigate and plan their event outings 
+                            in a frictionless way, creating a high-value exchange between customers and ticket sellers.  </p>
+                        
+                        <a href="#" class="primary-btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- About Us Section End -->
+
+    <!-- Call To Action Section Begin -->
+    <section class="callto-section set-bg" data-setbg="/static/img/ctc-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 m-auto">
+                    <div class="ctc-text">
+                        <h2>About iX<span style="color: #a77377;">.</span></h2>
+                        <p>We are creating a seamless and cohesive ticket purchase experience that 
+                            helps event-goers quickly find their most intended tickets, with no need for them to choose and decide among multiple options. By leveraging AI and ML techniques, 
+                            our intelligent ticket agent identifies customer intention and recommends ticket options that 
+                            best satisfy the whole going group. Our solution helps people navigate and plan their event outings 
+                            in a frictionless way, creating a high-value exchange between customers and ticket sellers.  </p>
+                        
+                        <!-- <a href="#" class="primary-btn ctc-btn">Work With Us</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Call To Action Section End -->
+
+    <!-- Footer Section Begin -->
+    <section class="footer-section">
+        <div class="container">
+            <div class="copyright-text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved  |  Cornell Tech · Tata Consultancy Services · Team i
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+        </div>
+    </section>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/js/mixitup.min.js"></script>
+    <script src="/static/js/jquery.slicknav.js"></script>
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+
 </html>
-

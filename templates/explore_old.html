@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+
+<form action="{{ url_for('explore') }}" method="POST" class="movie-list-form">
+<table>
+    <thead>
+    <tr>
+        <th>mid</th>        
+        <th>name</th>
+        <th>genre</th>
+    </tr>
+    </thead>
+    <ol>
+        {%for i in range(len)%}
+            <tr>
+            <td width="20%"> {{movies[i]['mid']}} </td>
+            <td width="20%">{{movies[i]['name']}}</td>
+            <td width="20%">{{movies[i]['genre']}}</td>
+            <td>
+                <button type="submit" name="submit_button" value="{{movies[i]['mid']}}"> Choose </button>
+            </td>
+            </tr>   
+        {%endfor%}
+    </ol>  
+</table>
+</form>
+</html>
+
