@@ -1,29 +1,216 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="zxx">
 
-<form action="{{ url_for('explore') }}" method="POST" class="movie-list-form">
-<table>
-    <thead>
-    <tr>
-        <th>mid</th>        
-        <th>name</th>
-        <th>genre</th>
-    </tr>
-    </thead>
-    <ol>
-        {%for i in range(len)%}
-            <tr>
-            <td width="20%"> {{movies[i]['mid']}} </td>
-            <td width="20%">{{movies[i]['name']}}</td>
-            <td width="20%">{{movies[i]['genre']}}</td>
-            <td>
-                <button type="submit" name="submit_button" value="{{movies[i]['mid']}}"> Choose </button>
-            </td>
-            </tr>   
-        {%endfor%}
-    </ol>  
-</table>
-</form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Hazze Template">
+    <meta name="keywords" content="Hazze, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hazze | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="logo">
+                        <a href="#">
+                            <img src="/static/img/ix.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-10 col-md-10">
+                    <div class="main-menu mobile-menu">
+                        <ul>
+                            <li><a href="./">Home</a></li>
+                            <li class="active"><a href="./explore">Explore</a></li>
+                            <li><a href="./inprogress">In Progress</a></li>
+                            <li><a href="./purchased">Purchased</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <!-- <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="breadcrumb-option">
+                        <a href="#">Home</a>
+                        <span>Movies</span>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 text-right">
+                    <div class="breadcrumb-text">
+                        <h3>Movies</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Breadcrumb Section End -->
+
+    <!-- About Us Section Begin -->
+    <!-- <section class="about-us-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="as-pic">
+                        <img src="img/about-us.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="as-text ap-text">
+                        <div class="section-title">
+                            <span>About us</span>
+                            <h2>About Story</h2>
+                        </div>
+                        <p class="f-para">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. </p>
+                        <p class="s-para">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                            eiusmod.Tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,
+                            consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                            aliqua. </p>
+                        <div class="about-counter">
+                            <div class="ac-item">
+                                <h2 class="ab-count">8384</h2>
+                                <p>Member</p>
+                            </div>
+                            <div class="ac-item">
+                                <h2 class="ab-count">6880</h2>
+                                <p>Partner</p>
+                            </div>
+                            <div class="ac-item">
+                                <h2 class="ab-count">1546</h2>
+                                <p>Branch</p>
+                            </div>
+                            <div class="ac-item">
+                                <h2 class="ab-count">4677</h2>
+                                <p>Designs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- About Us Section End -->
+
+    <!-- Member Section Begin -->
+    <section class="member-section spad ap-member">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="member-controls">
+                    <ul>
+                        <li class="active" data-filter=".all">Movies</li>
+                        <li data-filter=".fashion">Concerts</li>
+                        <li data-filter=".model">Sports</li>
+                        <!-- <li data-filter=".event">Event</li> -->
+                        <li data-filter=".other">Other</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+
+            <div class="row">
+                {% for i in range(len) %}
+                <div class="col-lg-4 col-md-6">
+                <div class="container">
+                    <div class="member-item set-bg" data-setbg="/static/img/member/movie-1.jpg">
+                        <div class="mi-text">
+                            <p>After staging his own suicide, a crazed scientist uses his power to become invisible to stalk and terrorize his ex-girlfriend. When the police refuse to believe her story, she decides to take matters into her own hands and fight back.</p>
+                            <div class="mt-title">
+                            </div>
+                                <a href="/form?mid={{movies[i]['name']}}" class="primary-btn">Get Tickets</a>
+                        </div>
+                    </div>
+                    <div class="member-intro">
+                        <h4><b>{{movies[i]['name']}}</b></h4>
+                        <span>{{movies[i]['genre']}} ‧ 2h 5m</span>
+                    </div>
+                </div>
+                </div>
+                {% endfor %}
+            </div>
+
+{#            <div class="row">#}
+{#                <div class="col-lg-4 col-md-6">#}
+{#                <div class="container">#}
+{#                    <div class="member-item set-bg" data-setbg="/static/img/member/movie-1.jpg">#}
+{#                        <div class="mi-text">#}
+{#                            <p>After staging his own suicide, a crazed scientist uses his power to become invisible to stalk and terrorize his ex-girlfriend. When the police refuse to believe her story, she decides to take matters into her own hands and fight back.</p>#}
+{#                            <div class="mt-title">#}
+{#                                <!-- <h4>Leigh Whannell</h4>#}
+{#                                <span>Director</span> -->#}
+{#                            </div>#}
+{#                            <!-- <div class="mt-social"> -->#}
+{#                                <a href="./form" class="primary-btn">Get Tickets</a>#}
+{#                                <!-- <a href="#"><i class="fa fa-facebook"></i></a> -->#}
+{#                                <!-- <a href="#"><i class="fa fa-twitter"></i></a>#}
+{#                                <a href="#"><i class="fa fa-instagram"></i></a>#}
+{#                                <a href="#"><i class="fa fa-pinterest"></i></a> -->#}
+{#                            <!-- </div> -->#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="member-intro">#}
+{#                        <h4><b>The Invisible Man</b></h4>#}
+{#                        <span>Mystery/Sci-fi ‧ 2h 5m</span>#}
+{#                    </div>#}
+{#                </div>#}
+{#                </div>#}
+{#                #}
+{#            </div>#}
+
+        </div>
+    </section>
+    <!-- Member Section End -->
+
+
+    <!-- Footer Section Begin -->
+    <section class="footer-section">
+        <div class="container">
+            <div class="copyright-text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved  |  Cornell Tech · Tata Consultancy Services · Team i
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+        </div>
+    </section>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/js/mixitup.min.js"></script>
+    <script src="/static/js/jquery.slicknav.js"></script>
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+
 </html>
-
