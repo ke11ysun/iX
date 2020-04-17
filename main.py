@@ -36,9 +36,9 @@ def explore():
         movies.append(movie)
     return render_template("explore.html", len=len(movies), movies=movies)
 
-@app.route("/form", methods=['POST', 'GET'])
-def form():
-    return render_template("form.html")
+@app.route("/form/<mname>", methods=['POST', 'GET'])
+def form(mname):
+    return render_template("form.html", mname=mname)
 
 @app.route("/inprogress", methods=['POST', 'GET'])
 def inprogress():
@@ -50,6 +50,13 @@ def purchased():
 
 @app.route("/tickets", methods=['POST', 'GET'])
 def tickets():
+    num = request.form['num']
+    time = request.form['time']
+    date = request.form['date']
+    zip_code = request.form['zip_code']
+    # print(num)
+    # print(time)
+    # print(zip_code)
     return render_template("tickets.html")
 
 @app.route("/login", methods=['POST', 'GET'])

@@ -43,10 +43,10 @@
                 <div class="col-lg-10 col-md-10">
                     <div class="main-menu mobile-menu">
                         <ul>
-                            <li><a href="./">Home</a></li>
-                            <li><a href="./explore">Explore</a></li>
-                            <li class="active"><a href="./inprogress">In Progress</a></li>
-                            <li><a href="./purchased">Purchased</a></li>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/explore">Explore</a></li>
+                            <li class="active"><a href="/inprogress">In Progress</a></li>
+                            <li><a href="/purchased">Purchased</a></li>
                         </ul>
                     </div>
                 </div>
@@ -103,7 +103,8 @@
                         </div> -->
                         <div class="blog-author">
                             <img src="./img/member/movie-1.jpg" alt="">
-                            <h5>The Invisible Man</h5>
+{#                            <h5>The Invisible Man</h5>#}
+                            <h5>{{ mname }}</h5>#}
                             <!-- <button class="site-btn" id="scroll">Tell us your preferences for the tickets!</button> -->
                             <p>Tell us your preferences for the tickets!</p>
                             
@@ -118,6 +119,7 @@
 
     <!-- Testimonial Section Begin -->
     <!-- <form action="#" class="comment-form"> -->
+    <form action="/tickets" method="POST" class="comment-form">
     <section class="testimonial-section spad">
         <div class="container">
             <div class="row testimonial-slider owl-carousel">
@@ -127,7 +129,7 @@
                         <div class="leave-comment comment-form">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" pattern="[0-9]*" placeholder="Number of Tickets">
+                                    <input type="text" name="num" pattern="[0-9]*" placeholder="Number of Tickets">
                                 </div> 
                             </div>
                         </div>
@@ -139,7 +141,7 @@
                         <div class="leave-comment comment-form">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="time" placeholder="Time">
+                                    <input type="time" name="time" placeholder="Time">
                                 </div>
                                 <div class="col-lg-6">
                                     <button class="site-btn">Add</button>
@@ -152,7 +154,7 @@
                         <div class="leave-comment comment-form">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="date" placeholder="Date">
+                                    <input type="date" name="date" placeholder="Date">
                                 </div>
                                 <div class="col-lg-6">
                                     <button class="site-btn">Add</button>
@@ -168,7 +170,7 @@
                             <div class="row">
                                 
                                 <div class="col-lg-6">
-                                    <input type="text" pattern="[0-9]*" placeholder="Zip Code">
+                                    <input type="text" name="zip_code" pattern="[0-9]*" placeholder="Zip Code">
                                 </div>
                                 
                             </div>
@@ -191,11 +193,13 @@
                 </div>
             </div>
             <div style="text-align: center; margin-top: 25px;">
-                <a href="./tickets" class="site-btn">Generate Ticket Recommendations</a>
+{#                <a href="/tickets" class="site-btn">Generate Ticket Recommendations</a>#}
+                <input type="submit" value="Generate Ticket Recommendations" class="site-btn" style="margin-top:20px;"/>
             </div>
             
         </div>
     </section>
+    </form>
     <!-- </form> -->
     <!-- Testimonial Section End -->
 
