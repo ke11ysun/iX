@@ -1,85 +1,22 @@
-Theater_Id,Name,Gmap,addr,trans
-0,Academy Theater,"https://www.google.com/maps/?q=40.762818,-73.969159",111 E 59th St,"Subway: N, Q, R to Lexington Ave–59th St; 4, 5, 6 to 59th St"
-1,All Staten Island Stadium 16,"https://www.google.com/maps/?q=40.626455,-74.172597",2474 Forest Ave,Call Venue 718-777-3456
-2,AMC Bay Plaza Cinema 13,"https://www.google.com/maps/?q=40.86896,-73.82339",2210 Bartow Ave,Subway: 5 to Baychester Ave
-3,AMC Empire 25,"https://www.google.com/maps/?q=40.756359,-73.989055",234 W 42nd St,"Subway: N, Q, R, 42nd St S, 1, 2, 3, 7 to 42nd St–Times Sq; A, C, E to 42nd St–Port Authority"
-4,AMC Loews 19th Street East 6,"https://www.google.com/maps/?q=40.738495,-73.989955",890 Broadway,"Subway: N, R to 23rd St (Broadway); 6 to 23rd St (Lexington Ave)"
-5,AMC Loews 72nd St 1,"https://www.google.com/maps/?q=40.769534,-73.961264",1230 3rd Avenue,Subway: 6 to 68th St–Hunter College
-6,AMC Loews 84th Street 6,"https://www.google.com/maps/?q=40.786735,-73.977524",2310 Broadway,Call Venue 888-262-4386
-7,AMC Loews Bay Terrace 6,"https://www.google.com/maps/?q=40.779063,-73.778679",21101 26th Avenue,Call Venue 888-262-4386
-8,AMC Loews Fresh Meadows 7,"https://www.google.com/maps/?q=40.741229,-73.783583",190-02 Horace Harding Blvd,Call Venue 888-262-4386
-9,AMC Loews Kips Bay 15,https://www.timeout.com/newyork/love-city,570 Second Ave,Subway: 6 to 33rd St (Park Ave South)
-10,AMC Loews Lincoln Square 13,https://www.timeout.com/newyork/love-city,1998 Broadway,Call Venue 212-336-5020?
-11,AMC Loews Orpheum 7,"https://www.google.com/maps/?q=40.779216,-73.953716",1538 3rd Avenue,"Subway: 4, 5, 6 to 86th St (Lexington Ave)"
-12,AMC Loews Village 7,"https://www.google.com/maps/?q=40.731613,-73.988806",66 Third Ave,"Subway: L to Third Ave, 6 to Astor Pl"
-13,AMC Loews West 34th Street 14,"https://www.google.com/maps/?q=40.752488,-73.994216",312 W 34th St,"Subway: A, C, E, 1, 2, 3 to 34th St–Penn Station"
-14,AMC Magic Johnson Harlem Theater,"https://www.google.com/maps/?q=40.80712,-73.94603",124th St,"Subway: A, C, B, D to 125th St"
-15,Angelika Film Center,https://www.timeout.com/newyork/love-city,18 W Houston St,"Subway: B, D, F, M to Broadway–Lafayette St; 6 to Bleecker St"
-16,Anthology Film Archives,"https://www.google.com/maps/?q=40.724654,-73.990119",32 Second Ave,"Subway: F to Lower East Side–Second Ave, 6 to Bleecker St"
-17,Atlas Theater,"https://www.google.com/maps/?q=40.727661,-73.988544",111 Second Ave,Subway: F to Lower East Side–Second Ave; 6 to Astor Pl
-18,BAM Rose Cinemas,"https://www.google.com/maps/?q=40.686467,-73.9777",30 Lafayette Ave,"Subway: B, D, N, Q, R, 2, 3, 4, 5 to Atlantic Ave–Barclays Ctr; G to Fulton St"
-19,Bay Ridge Alpine Cinemas,"https://www.google.com/maps/?q=40.633406,-74.020305",6817 5th Avenue,Subway: R to Bay Ridge Ave
-20,Big Cinemas Manhattan,"https://www.google.com/maps/?q=40.76092,-73.964881",239 E 59th St,"Subway: N, Q, R to Lexington Ave–59th St; 4, 5, 6 to 59th St"
-21,BMCC Tribeca PAC,"https://www.google.com/maps/?q=40.717367,-74.012178",199 Chambers St,"Subway: A, C, 1, 2, 3 to Chambers St"
-22,Brooklyn Heights Cinema,"https://www.google.com/maps/?q=40.698931,-73.99249",70 Henry St,"Subway: A, C to High St; 2, 3 to Clark St"
-23,Cantor Film Center,"https://www.google.com/maps/?q=40.731168,-73.994435",36 E 8th St,"Subway: N, R to 8th St–NYU"
-24,"CC Cinemas 1, 2, 3","https://www.google.com/maps/?q=40.761805,-73.966227",1001 Third Ave,"Subway: 4, 5, 6 to 59th St (Lexington Ave); N, Q, R to Lexington Ave–59th St"
-25,CC East 86th Street,"https://www.google.com/maps/?q=40.77814,-73.953495",210 E 86th St,"Subway: 4, 5, 6 to 86th St (Lexington Ave)"
-26,Cinema Purgatorio at the Red Room,"https://www.google.com/maps/?q=40.726424,-73.989951",85 E 4th St,Subway: F to Lower East Side–Second Ave
-27,Cinema Village,"https://www.google.com/maps/?q=40.733942,-73.99343",22 E 12th St,"Subway: F, M to 14th St; L to Sixth Ave"
-28,City Cinemas Beekman Theatre,"https://www.google.com/maps/?q=40.765362,-73.960901",1271 Second Ave,Subway: 6 to 68th St–Hunter College
-29,Clearview Chelsea,"https://www.google.com/maps/?q=40.744947,-73.997971",260 W 23rd St,"Subway: C, E to 23rd St; 1 to 23rd St"
-30,Clearview Cinemas,"https://www.google.com/maps/?q=40.761366,-73.960327",400 E 62nd St,"Subway: 4, 5, 6 to 59th St (Lexington Ave); F to Lexington Ave–63rd St"
-31,Clearview First & 62nd,"https://www.google.com/maps/?q=40.761366,-73.960327",400 E 62nd St,"Subway: 4, 5, 6 to 59th St (Lexington Ave); F to Lexington Ave–63rd St"
-32,Clearview Ziegfeld,"https://www.google.com/maps/?q=40.762896,-73.979756",141 W 54th St,"Subway: B, D, E to Seventh Ave; F, N, Q, R to 57th St; 1 to 50th St"
-33,Cobble Hill Cinemas,https://www.timeout.com/newyork/love-city,265 Court St,"Subway: F, G to Bergen St"
-34,College Point Multiplex Cinemas,"https://www.google.com/maps/?q=40.771586,-73.836444",28-55 Ulmer St,Subway: 7 to Flushing–Main St
-35,Concourse Plaza Multiplex Cinemas,"https://www.google.com/maps/?q=40.826325,-73.920973",214 East 161st Street,Call Venue 718-588-8800
-36,Court Street Regal Cinemas,"https://www.google.com/maps/?q=40.690757,-73.991876",106 Court St,"Subway: 2, 3, 4, 5 to Borough Hall; R to Court St–Borough Hall"
-37,Film Forum,https://www.timeout.com/newyork/things-to-do/101-things-to-do-in-new-york,209 W Houston St,Subway: 1 to Houston St
-38,The Film Society of Lincoln Center,"https://www.google.com/maps/?q=40.774359,-73.983951",165 W 65th St,Subway: 1 to 66th St–Lincoln Ctr
-39,IFC Center,https://www.timeout.com/newyork/love-city,323 Sixth Ave,"Subway: A, C, E, B, D, F, M to W 4th St"
-40,IndieScreen,"https://www.google.com/maps/?q=40.715025,-73.966258",289 Kent Ave,"Subway: J, Z, M to Marcy Ave; L to Bedford Ave"
-41,Jackson Theatre,"https://www.google.com/maps/?q=40.743903,-73.950063",12-27 Jackson Avenue,"Subway: E, V to 23rd St–Ely Ave; G to Long Island City–Court Sq; 7 to 45th Rd–Court House Sq"
-42,Jamaica Multiplex Cinemas,"https://www.google.com/maps/?q=40.703399,-73.800052",159-02 Jamaica Ave,"Subway: E, J, Z to Jamaica Center–Parsons/Archer"
-43,Kew Gardens Cinemas,"https://www.google.com/maps/?q=40.709167,-73.829955",81-05 Lefferts Blvd,"Subway: E, F to Kew Gardens–Union Tpke"
-44,Landmark Loew's Jersey Theatre,"https://www.google.com/maps/?q=40.732266,-74.064876",54 Journal Sq,Call Venue 201 798-6055
-45,Landmark's Sunshine Cinema,https://www.timeout.com/newyork/love-city,143 E Houston St,Subway: F to Lower East Side–Second Ave
-46,Light Industry,"https://www.google.com/maps/?q=40.734581,-73.955618",155 Freeman St,Subway: G to Greenpoint Ave
-47,Lincoln Plaza Cinemas,"https://www.google.com/maps/?q=40.771016,-73.981612",1886 Broadway,"Subway: A, C, B, D, 1 to 59th St–Columbus Circle"
-48,Main Street Cinemas,"https://www.google.com/maps/?q=40.725029,-73.821389",72-66 Main Street,"cinematreasures.org
-                    
-
- Call Venue 718-263-4828"
-49,Maysles Cinema,"https://www.google.com/maps/?q=40.806491,-73.94649",343 Malcolm X Blvd (Lenox Ave),"Subway: A, C, B, D, 2, 3 to 125th St"
-50,Movieworld at Douglaston,"https://www.google.com/maps/?q=40.754707,-73.738934",242-02 61st Avenue,"www.movieworldcinemas.com
-                    
-
- Call Venue 718-423-9200"
-51,Museum of the Moving Image,http://www.movingimage.us/,36-01 35th Ave,"Subway: M, R to Steinway St; N, Q to 36th Ave"
-52,92YTribeca,"https://www.google.com/maps/?q=40.722852,-74.00809",200 Hudson St,"Subway: A, C, E, 1 to Canal St"
-53,Nitehawk Cinema,https://www.timeout.com/newyork/love-city,136 Metropolitan Ave,Subway: L to Bedford Ave
-54,Paradise Theater,"https://www.google.com/maps/?q=40.860292,-73.898531",2413 Grand Concourse,"Subway: B, D, 4 to Fordham Rd"
-55,Paris Theatre,"https://www.google.com/maps/?q=40.763766,-73.974281",4 W 58th St,"Subway: F to 57th St; N, R to Fifth Ave–59th St"
-56,Pavilion,"https://www.google.com/maps/?q=40.661517,-73.979466",188 Prospect Park West,"Subway: F, G to 15th St–Prospect Park"
-57,Quad Cinema,"https://www.google.com/maps/?q=40.736003,-73.995881",34 W 13th St,"Subway: F, M to 14th St; L to Sixth Ave"
-58,Regal Atlas Park Stadium 8,"https://www.google.com/maps/?q=40.709431,-73.869043",80-28 Cooper Ave,Call Venue 718-416-1060
-59,Regal Battery Park Stadium 16,"https://www.google.com/maps/?q=40.714533,-74.015396",102 North End Ave,"Subway: E to World Trade Center; 1, 2, 3 to Chambers St (West Broadway)"
-60,Regal E-Walk Stadium 13,"https://www.google.com/maps/?q=40.756762,-73.988633",247 W 42nd St,"Subway: N, Q, R, 42nd St S, 1, 2, 3, 7 to 42nd St–Times Sq; A, C, E to 42nd St–Port Authority"
-61,Regal Union Square 14,"https://www.google.com/maps/?q=40.734115,-73.990466",850 Broadway,"Subway: L, N, Q, R, 4, 5, 6 to 14th St–Union Sq"
-62,reRun Gastropub Theater,"https://www.google.com/maps/?q=40.70275,-73.987099",147 Front St,"Subway: A, C to High St; F to York St"
-63,Spectacle Theater,"https://www.google.com/maps/?q=40.712573,-73.962901",124 South 3rd St,"Subway: L to Bedford Ave; J, Z, M to Marcy Ave"
-64,Sunnyside Center Cinema,"https://www.google.com/maps/?q=40.743827,-73.921863",42-17 Queens Blvd.,Subway: 7 to 40th St
-65,Tribeca Film Center,"https://www.google.com/maps/?q=40.721665,-74.006336",54 Varick St,"Subway: A, C, E, 1 to Canal St"
-66,Two Boots Pioneer Theater,"https://www.google.com/maps/?q=40.72357,-73.984831",155 E 3rd St,Subway: F to Lower East Side–Second Ave
-67,UA 64th and 2nd Gemini,"https://www.google.com/maps/?q=40.763317,-73.961844",1210 2nd Avenue,Subway: F to Lexington Ave–63rd St
-68,UA Brandon Cinemas,"https://www.google.com/maps/?q=40.720509,-73.846392",70-20 Austin St,"Subway: E, F, M, R to Forest Hills–71st Ave"
-69,UA Court Street Stadium 12,"https://www.google.com/maps/?q=40.690713,-73.991897",108 Court St,"Subway: 2, 3, 4, 5 to Borough Hall"
-70,UA East,"https://www.google.com/maps/?q=40.776009,-73.950037",1629 1st Avenue,"Subway: 4, 5, 6 to 86th St (Lexington Ave)"
-71,UA Kaufman Astoria Cinema 14,"https://www.google.com/maps/?q=40.75474,-73.923504",35-30 38th St,"Subway: N, Q to 36th Ave; M, R to 36th St"
-72,UA Midway Stadium 9,tel:800-326-3264,108-22 Queens Blvd,"Subway: E, F, M, R to Forest Hills–71st Ave"
-73,UA Sheepshead Bay Stadium 14 + IMAX,"https://www.google.com/maps/?q=40.586166,-73.9305",3907 Shore Parkway,
-74,UA Staten Island Stadium 16,"https://www.google.com/maps/?q=40.626455,-74.172597",2474 Forest Ave,Bus: S40
-75,United Artists Hylan Plaza,"https://www.google.com/maps/?q=40.566729,-74.109837",107 Mill Road,
-76,Village East Theatre,"https://www.google.com/maps/?q=40.730916,-73.98611",181–189 Second Ave,"Subway: L, N, Q, R, 4, 5, 6 to 14th St–Union Sq"
-77,Whitestone Multiplex Cinemas,"https://www.google.com/maps/?q=40.828732,-73.842416",2505 Bruckner Boulevard,Call Venue 718-409-0166
+Theater_Id,Name,Gmap,addr,trans,google_score
+3,AMC Empire 25,"https://www.google.com/maps/?q=40.756359,-73.989055",234 W 42nd St,"Subway: N, Q, R, 42nd St S, 1, 2, 3, 7 to 42nd St–Times Sq; A, C, E to 42nd St–Port Authority",4.1
+59,Regal Battery Park Stadium 16,"https://www.google.com/maps/?q=40.714533,-74.015396",102 North End Ave,"Subway: E to World Trade Center; 1, 2, 3 to Chambers St (West Broadway)",4.6
+6,AMC 84th Street 6,"https://www.google.com/maps/?q=40.786735,-73.977524",2310 Broadway,Call Venue 888-262-4386,4.5
+10,AMC Lincoln Square 13,https://www.timeout.com/newyork/love-city,1998 Broadway,Call Venue 212-336-5020?,4.4
+13,AMC West 34th Street 14,"https://www.google.com/maps/?q=40.752488,-73.994216",312 W 34th St,"Subway: A, C, E, 1, 2, 3 to 34th St–Penn Station",4.2
+12,AMC Village 7,"https://www.google.com/maps/?q=40.731613,-73.988806",66 Third Ave,"Subway: L to Third Ave, 6 to Astor Pl",4.4
+8,AMC Fresh Meadows 7,"https://www.google.com/maps/?q=40.741229,-73.783583",190-02 Horace Harding Blvd,Call Venue 888-262-4386,4.5
+15,Angelika Film Center,https://www.timeout.com/newyork/love-city,18 W Houston St,"Subway: B, D, F, M to Broadway–Lafayette St; 6 to Bleecker St",4.4
+39,IFC Center,https://www.timeout.com/newyork/love-city,323 Sixth Ave,"Subway: A, C, E, B, D, F, M to W 4th St",4.5
+4,AMC 19th Street East 6,"https://www.google.com/maps/?q=40.738495,-73.989955",890 Broadway,"Subway: N, R to 23rd St (Broadway); 6 to 23rd St (Lexington Ave)",4.7
+37,Film Forum,https://www.timeout.com/newyork/things-to-do/101-things-to-do-in-new-york,209 W Houston St,Subway: 1 to Houston St,3.9
+14,AMC Magic Johnson Harlem Theater,"https://www.google.com/maps/?q=40.80712,-73.94603",124th St,"Subway: A, C, B, D to 125th St",3.8
+76,Village East Theatre,"https://www.google.com/maps/?q=40.730916,-73.98611",181–189 Second Ave,"Subway: L, N, Q, R, 4, 5, 6 to 14th St–Union Sq",4.5
+60,Regal E-Walk Stadium 13,"https://www.google.com/maps/?q=40.756762,-73.988633",247 W 42nd St,"Subway: N, Q, R, 42nd St S, 1, 2, 3, 7 to 42nd St–Times Sq; A, C, E to 42nd St–Port Authority",4.4
+29,Clearview Chelsea,"https://www.google.com/maps/?q=40.744947,-73.997971",260 W 23rd St,"Subway: C, E to 23rd St; 1 to 23rd St",4.5
+27,Cinema Village,"https://www.google.com/maps/?q=40.733942,-73.99343",22 E 12th St,"Subway: F, M to 14th St; L to Sixth Ave",4.4
+24,"CC Cinemas 1, 2, 3","https://www.google.com/maps/?q=40.761805,-73.966227",1001 Third Ave,"Subway: 4, 5, 6 to 59th St (Lexington Ave); N, Q, R to Lexington Ave–59th St",4.3
+61,Regal Union Square 14,"https://www.google.com/maps/?q=40.734115,-73.990466",850 Broadway,"Subway: L, N, Q, R, 4, 5, 6 to 14th St–Union Sq",4.4
+11,AMC Orpheum 7,"https://www.google.com/maps/?q=40.779216,-73.953716",1538 3rd Avenue,"Subway: 4, 5, 6 to 86th St (Lexington Ave)",4.1
+57,Quad Cinema,"https://www.google.com/maps/?q=40.736003,-73.995881",34 W 13th St,"Subway: F, M to 14th St; L to Sixth Ave",3.6
+38,The Film Society of Lincoln Center,"https://www.google.com/maps/?q=40.774359,-73.983951",165 W 65th St,Subway: 1 to 66th St–Lincoln Ctr,4.5
