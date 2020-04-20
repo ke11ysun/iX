@@ -4,11 +4,8 @@ from typing import Dict, List
 
 class Preference:
 
-    def __init__(self,
-                 preferred_datetimes: List[datetime],
-                 preferred_zipcode: int,
-                 extras: str,
-                 weight: int = 0):
+    def __init__(self, preferred_datetimes: List[datetime],
+                 preferred_zipcode: int, extras: str, weight: int = 0):
         """
         :param preferred_datetimes: preferred list of date + time in the order
                                     of most preferred to least preferred
@@ -23,15 +20,22 @@ class Preference:
         self.weight = weight
 
 
-def get_recommendation(movies: Dict[str, Dict],
+class Event:
+
+    def __init__(self):
+        pass
+
+
+def get_recommendation(events: Dict[str, Event],
                        preferences: Dict[str, Preference]) -> List[str]:
     """
-    :param movies: movie database as <movie_id, movie_metadata>
-    :param preferences: collected preferences as <user_id, preference>
-    :return: a list of movie_id ordered from most recommended to least recommended
+    :param events: event database as <event_id, event metadata>
+    :param preferences: collected preferences as <user_id, user preference>
+    :return: a list of event_id ordered from most recommended to least recommended
     """
     recommendations = []
 
     num_people = len(preferences)
+
 
     return recommendations
