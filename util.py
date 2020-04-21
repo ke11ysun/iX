@@ -71,25 +71,108 @@ showings = {
 }
 
 
-def recommend(uid):
-    mids = ['m001', 'm003']
-    return mids
+import re
 
 def augment_preference(preference):
     # process natural language input
     # match keywords and extract features
+    tokens = preference['self-input'].split()
+
+    # show type (not in db) 
+    show_type = '2D'
+    SHOW_TYPES = {'2D', '3D', 'IMAX', 'DOLBY'}
+    for token in tokens:
+        if token in SHOW_TYPES:
+            show_type = token
+            break
+    preference['show_type'] = show_type
+
+    # cinema rate 
+    rating = 0.0
+    PATTERN = re.compile('\d+(\.\d+)?')
+    ratings = re.findall(PATTERN, preference['self-input'])
+    if len(ratings) > 0:
+        rating = float(ratings[0])
+    preference['rating'] = rating
+
+    # cinema surrounding (not in db)
+    hasRestaurant = False
+    RESTAURANT = 'restaurant'
+    if RESTAURANT in set(tokens):
+        hasRestaurant = True
+    preference['hasRestaurant'] = hasRestaurant
+
+    # seat type (too complex)
+
     return preference
 
-def filter_shows(mid, preference):
+def select_seats(show, num_tickets, conn):
+    # change show's seat map and update db
+    # selected_seats = ['f1', 'g2']
+    LEN_ROW = LEN_COL = 10
+    ROW_IDS = 'abcdefghij' 
+    COL_IDS = [str(i) for i in range(1, 11)]
+    selected_seats = None
+    seat_map = []
+
+    # deserialize
+    seats = show[-1].split(',')
+    for row_start in range(0, len(seats), LEN_ROW):
+        seat_map.append(''.join(seats[row_start : row_start + LEN_ROW])) # like '0110000000'
+
+    # find continuous
+    for i, row in enumerate(seat_map):
+        if '0' * num_tickets in row:
+            row_num = ROW_IDS[i]
+            col_start_num = row.index('0' * num_tickets)
+            col_nums = COL_IDS[col_start_num : col_start_num + num_tickets]
+            selected_seats = [row_num + col_num for col_num in col_nums]
+            break
+
+    return selected_seats
+
+def filter_shows(mname, preference, conn):
+    # num_tickets, time, date, zip, show_type, rating, hasRestaurant
+    cur = conn.cursor()
+    cur.execute("SELECT mid FROM movies WHERE name = " + mname)
+    mid = cur.fetchall()[0]
+
+    query = "SELECT id, date, time, c.name, price, seat_map \
+            FROM shows s, cinemas c \
+            WHERE movie_id = {}\
+                AND s.time >= {} \
+                AND s.date = {} \
+                AND s.show_type = {} \
+                AND c.zip = {} \
+                AND c.google_score >= {} \
+                AND c.restaurant = {}".format(mid,
+                                              preference['time'], 
+                                              preference['date'], 
+                                              preference['zip'], 
+                                              preference['show_type'], 
+                                              preference['rating'], 
+                                              preference['hasRestaurant'])
+    cur.execute(query)
+    showings = cur.fetchall() # return list of tups
+
+    # run seat selection algo
+    for i, show in enumerate(showings):
+        seats = select_seats(show, preference['num_tickets'], conn)
+        if not seats:
+            del showings[i]
+        else:
+            show['selected_seats'] = seats
+
     return showings
 
-def select_seats(show):
-    # change show's seat map and update db
-    selected_seats = ['f1', 'g2']
-    return selected_seats
+
 
 def get_user(username, password):
     return users[(username, password)]
 
 def get_movie(mid):  
     return movies[mid]
+
+def recommend(uid):
+    mids = ['m001', 'm003']
+    return mids
