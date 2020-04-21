@@ -106,7 +106,7 @@
                             <h5>{{ mname }}</h5>
                             <!-- <button class="site-btn" id="scroll">Tell us your preferences for the tickets!</button> -->
                             <p>Tell us your preferences for the tickets!</p>
-
+                            
                         </div>
                     </div>
                 </div>
@@ -121,21 +121,20 @@
     <section class="testimonial-section spad">
         <form action="/tickets" method="POST" class="comment-form">
         <div class="container">
-            <div class="row">
-{#            <div class="row testimonial-slider owl-carousel">#}
-{#                <div class="col-lg-6">#}
-                    <div class="testimonial-item col-lg-4 col-md-6">
+            <div class="row testimonial-slider owl-carousel">
+                <div class="col-lg-6">
+                    <div class="testimonial-item">
                         <h5>How many tickets are you buying?</h5>
                         <div class="leave-comment comment-form">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <input type="text" name="num" pattern="[0-9]*" placeholder="Number of Tickets">
-                                </div>
+                                </div> 
                             </div>
                         </div>
                     </div>
 
-                    <div class="testimonial-item col-lg-4 col-md-6">
+                    <div class="testimonial-item">
                         <h5>What is your zip code?</h5>
                         <div class="leave-comment comment-form">
                             <div class="row">
@@ -146,31 +145,49 @@
                         </div>
                     </div>
 
-{#                </div>#}
-{#                <div class="col-lg-6">#}
-                    <div class="testimonial-item col-lg-4 col-md-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="testimonial-item">
                         <h5>What time do you prefer going?</h5>
                         <div class="leave-comment comment-form">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <input type="time" name="time" placeholder="Time">
                                 </div>
-
+{#                                <div class="col-lg-6">#}
+{#                                    <button class="site-btn">Add</button>#}
+{#                                </div>#}
                             </div>
                         </div>
                     </div>
-                    <div class="testimonial-item col-lg-6 col-md-8">
+                    <div class="testimonial-item">
                         <h5>Which dates do you prefer going?</h5>
                         <div class="leave-comment comment-form">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <input type="date" name="date" placeholder="Date">
                                 </div>
-
+{#                                <div class="col-lg-6">#}
+{#                                    <button class="site-btn">Add</button>#}
+{#                                </div>#}
                             </div>
                         </div>
                     </div>
-                    <div class="testimonial-item col-lg-6 col-md-8">
+                </div>
+{#                <div class="col-lg-6">#}
+{#                    <div class="testimonial-item">#}
+{#                        <h5>What is your zip code?</h5>#}
+{#                        <div class="leave-comment comment-form">#}
+{#                            <div class="row">#}
+{#                                <div class="col-lg-6">#}
+{#                                    <input type="text" name="zip_code" pattern="[0-9]*" placeholder="Zip Code">#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+                <div class="col-lg-6">
+                    <div class="testimonial-item">
                         <div class="leave-comment comment-form">
                             <div class="row">
                                 <h5>Any other preferences?</h5>
@@ -181,11 +198,10 @@
                             </div>
                         </div>
                     </div>
-{#                </div>#}
-{#            </div>#}
+                </div>
             </div>
             <div style="text-align: center; margin-top: 25px;">
-                <input type="submit" value="Generate Ticket Recommendations" class="primary-btn" style="margin-top:20px;"/>
+                <input type="submit" value="Generate Ticket Recommendations" class="site-btn" style="margin-top:20px;"/>
             </div>
         </div>
         </form>
@@ -193,7 +209,7 @@
     <!-- </form> -->
     <!-- Testimonial Section End -->
 
-
+    
     <!-- Footer Section Begin -->
     <section class="footer-section">
         <div class="container">

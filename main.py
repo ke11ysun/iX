@@ -10,6 +10,7 @@ import sqlite3
 from sqlite3 import Error
 
 app = Flask(__name__)
+app.secret_key = 'asdjkhahuehasjkjsadljasudslhugaf'
 
 def sql_connection():
 	try:
@@ -21,7 +22,7 @@ def sql_connection():
 @app.route("/")
 def index():
     title = "iX"
-    session['conn'] = sql_connection()
+    # session['conn'] = sql_connection()
     return render_template("index.html", title=title)
 
 @app.route("/explore", methods=['POST', 'GET'])
@@ -68,7 +69,7 @@ def tickets():
     preference['date'] = request.form['date']
     preference['zip'] = request.form['zip_code']
     preference['self_input'] = request.form['self_input']
-
+    print(preference)
     # # filtering with rank, didn't test 0421
     # showings = filter_shows(session['mname'], preference, session['conn'])
     # return render_template("tickets.html", showings=showings)
