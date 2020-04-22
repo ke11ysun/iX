@@ -83,57 +83,27 @@
     <div class="blog-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="blog-item">
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <div class="bi-text">
-                                    <h5>Fri 23 JUN</h5>
-                                    <span><i class="fa fa-clock-o"></i> 07:30PM - 09:45PM</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="bi-text">
-                                    <h5>AMC Empire 25</h5>
-                                    <span><i class="fa fa-map-marker"></i> 312 W 34th St </span>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="bi-text">
-                                    <h5>Screen 05</h5>
-                                    <span><i class="fa fa-ticket"></i> 15E, 17E</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="bi-text" style="text-align: right;">
-                                    <h5>$ 27</h5>
-                                    <a href="#" class="site-btn">Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
 
+                {% for i in range(len) %}
                 <div class="col-lg-12">
                     <div class="blog-item">
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="bi-text">
-                                    <h5>Sat 24 JUN</h5>
-                                    <span><i class="fa fa-clock-o"></i> 05:30PM - 07:45PM</span>
+                                    <h5>{{showings[i]['date']}}</h5>
+                                    <span><i class="fa fa-clock-o"></i> {{showings[i]['time']}}</span>
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="bi-text">
-                                    <h5>Regal E-Walk 4DX & RPX</h5>
-                                    <span><i class="fa fa-map-marker"></i> 247 W 42nd St </span>
+                                    <h5> {{showings[i]['cinema_name']}} </h5>
+                                    <span><i class="fa fa-map-marker"></i> {{showings[i]['addr']}} </span>
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="bi-text">
                                     <h5>Screen 01</h5>
-                                    <span><i class="fa fa-ticket"></i> 12F, 14F</span>
+                                    <span><i class="fa fa-ticket"></i> {{showings[i]['selected_seats']}} </span>
                                 </div>
                             </div>
                             <div class="col-lg-3">
@@ -143,9 +113,74 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
+                {% endfor %}
+
+{#                <div class="col-lg-12">#}
+{#                    <div class="blog-item">#}
+{#                        <div class="row">#}
+{#                            <div class="col-lg-3">#}
+{#                                <div class="bi-text">#}
+{#                                    <h5>Fri 23 JUN</h5>#}
+{#                                    <span><i class="fa fa-clock-o"></i> 07:30PM - 09:45PM</span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-lg-3">#}
+{#                                <div class="bi-text">#}
+{#                                    <h5>AMC Empire 25</h5>#}
+{#                                    <span><i class="fa fa-map-marker"></i> 312 W 34th St </span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-lg-3">#}
+{#                                <div class="bi-text">#}
+{#                                    <h5>Screen 05</h5>#}
+{#                                    <span><i class="fa fa-ticket"></i> 15E, 17E</span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-lg-3">#}
+{#                                <div class="bi-text" style="text-align: right;">#}
+{#                                    <h5>$ 27</h5>#}
+{#                                    <a href="#" class="site-btn">Book Now</a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        #}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#                <div class="col-lg-12">#}
+{#                    <div class="blog-item">#}
+{#                        <div class="row">#}
+{#                            <div class="col-lg-3">#}
+{#                                <div class="bi-text">#}
+{#                                    <h5>Sat 24 JUN</h5>#}
+{#                                    <span><i class="fa fa-clock-o"></i> 05:30PM - 07:45PM</span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-lg-3">#}
+{#                                <div class="bi-text">#}
+{#                                    <h5>Regal E-Walk 4DX & RPX</h5>#}
+{#                                    <span><i class="fa fa-map-marker"></i> 247 W 42nd St </span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-lg-3">#}
+{#                                <div class="bi-text">#}
+{#                                    <h5>Screen 01</h5>#}
+{#                                    <span><i class="fa fa-ticket"></i> 12F, 14F</span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-lg-3">#}
+{#                                <div class="bi-text" style="text-align: right;">#}
+{#                                    <h5>$ 30</h5>#}
+{#                                    <a href="#" class="site-btn">Book Now</a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        #}
+{#                    </div>#}
+            </div>
         </div>
     </div>
     <!-- Blog Section End -->

@@ -79,7 +79,7 @@ def tickets():
     # # filtering with rank, didn't test 0421
     showings = filter_shows(session['mname'], preference, conn)
     pprint(showings[0])
-    return render_template("tickets.html", showings=showings)
+    return render_template("tickets.html", len=len(showings), showings=showings)
 
     # return render_template("tickets.html")
 
