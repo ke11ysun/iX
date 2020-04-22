@@ -4,20 +4,22 @@
 
 from flask import Flask, render_template, redirect, request, session, url_for
 from util import recommend, augment_preference, filter_shows, select_seats
-from util import get_user, get_movie
+from util import get_user, get_movies
 
 import sqlite3
 from sqlite3 import Error
 
 app = Flask(__name__)
 app.secret_key = 'asdjkhahuehasjkjsadljasudslhugaf'
+conn = None
 
 def sql_connection():
-	try:
-		conn = sqlite3.connect('iX.db')
-		return conn
-	except Error:
-		print(Error)
+    try:
+        conn = sqlite3.connect('iX.db', check_same_thread=False)
+        conn.row_factory = lambda c, r: dict(zip([col[0] for col in c.description], r))
+        return conn
+    except Error:
+        print(Error)
 
 @app.route("/")
 def index():
@@ -33,19 +35,21 @@ def explore():
     # else:
     #     print('no mids')
     #     return render_template('explore.html', error="no mids")
-    movies = []
-    print('before for')
-    mids = ['m001', 'm002', 'm003']
-    for mid in mids:
-        movie = {}
-        entity = get_movie(mid)
-        movie['mid'] = mid
-        movie['name'] = entity['name']
-        movie['genre'] = entity['genre']
-        # etc
-        print('=======')
-        print(len(movies))
-        movies.append(movie)
+
+    # movies = []
+    # print('before for')
+    # mids = ['m001', 'm002', 'm003']
+    # for mid in mids:
+    #     movie = {}
+    #     entity = get_movie(mid)
+    #     movie['mid'] = mid
+    #     movie['name'] = entity['name']
+    #     movie['genre'] = entity['genre']
+    #     # etc
+    #     print('=======')
+    #     print(len(movies))
+    #     movies.append(movie)
+    movies = get_movies(conn)
     return render_template("explore.html", len=len(movies), movies=movies)
 
 @app.route("/form/<mname>", methods=['POST', 'GET'])
@@ -79,4 +83,5 @@ def tickets():
 
 
 if __name__ == "__main__":
+    conn = sql_connection()
     app.run(host='127.0.0.1', port=8080, debug=True)

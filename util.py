@@ -173,6 +173,12 @@ def get_user(username, password):
 def get_movie(mid):  
     return movies[mid]
 
+def get_movies(conn):
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM movies LIMIT 10")
+    movies = cur.fetchall()
+    return movies
+
 def recommend(uid):
     mids = ['m001', 'm003']
     return mids
