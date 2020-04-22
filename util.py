@@ -194,7 +194,8 @@ def filter_shows(mname, preference, conn):
     # pprint(showings[:5])
 
     # run seat selection algo
-    for i, show in enumerate(showings[:2]):
+    showings = showings[:50] # display best 50 shows
+    for i, show in enumerate(showings):
         # print(show)
         seats = select_seats(show, preference['num_tickets'], conn)
         if not seats:
