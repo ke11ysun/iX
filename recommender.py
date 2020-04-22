@@ -1,6 +1,9 @@
 from datetime import datetime
 from typing import Dict, List
 
+import numpy as np
+import numpy.linalg as la
+
 
 class Preference:
 
@@ -22,20 +25,35 @@ class Preference:
 
 class Event:
 
-    def __init__(self):
-        pass
+    def __init__(self, event_datetime: datetime, zipcode: int):
+        self.event_datetime = event_datetime
+        self.zipcode = zipcode
 
 
-def get_recommendation(events: Dict[str, Event],
-                       preferences: Dict[str, Preference]) -> List[str]:
+def get_ticket_recommendation(events: Dict[str, Event],
+                              preferences: Dict[str, Preference]) -> List[str]:
     """
     :param events: event database as <event_id, event metadata>
     :param preferences: collected preferences as <user_id, user preference>
     :return: a list of event_id ordered from most recommended to least recommended
     """
-    recommendations = []
-
     num_people = len(preferences)
-
+    recommendations = list(events.keys())
+    # TODO: filter events based on preferences
 
     return recommendations
+
+
+def get_movie_recommendation(user_ratings: np.ndarray,
+                             user_id: int) -> List[str]:
+    u, sigma, vt = la.svd(user_ratings, full_matrices=False)
+    v = vt.T
+    user = user_ratings[user_id]
+    user_genre_preference = user @ v
+    recommendations = []
+
+    return recommendations
+
+
+np.set_printoptions(precision=2, suppress=True)
+get_movie_recommendation(None, None)
