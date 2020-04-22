@@ -9,6 +9,8 @@ from util import get_user, get_movies
 import sqlite3
 from sqlite3 import Error
 
+from pprint import pprint
+
 app = Flask(__name__)
 app.secret_key = 'asdjkhahuehasjkjsadljasudslhugaf'
 conn = None
@@ -17,6 +19,7 @@ def sql_connection():
     try:
         conn = sqlite3.connect('iX.db', check_same_thread=False)
         conn.row_factory = lambda c, r: dict(zip([col[0] for col in c.description], r))
+        print('DB connected')
         return conn
     except Error:
         print(Error)
@@ -24,7 +27,6 @@ def sql_connection():
 @app.route("/")
 def index():
     title = "iX"
-    # session['conn'] = sql_connection()
     return render_template("index.html", title=title)
 
 @app.route("/explore", methods=['POST', 'GET'])
@@ -73,12 +75,13 @@ def tickets():
     preference['date'] = request.form['date']
     preference['zip'] = request.form['zip_code']
     preference['self_input'] = request.form['self_input']
-    print(preference)
+    pprint(preference)
     # # filtering with rank, didn't test 0421
-    # showings = filter_shows(session['mname'], preference, session['conn'])
-    # return render_template("tickets.html", showings=showings)
+    showings = filter_shows(session['mname'], preference, conn)
+    pprint(showings[0])
+    return render_template("tickets.html", showings=showings)
 
-    return render_template("tickets.html")
+    # return render_template("tickets.html")
 
 
 

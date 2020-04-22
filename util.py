@@ -76,9 +76,9 @@ import re
 def augment_preference(preference):
     # process natural language input
     # match keywords and extract features
-    tokens = preference['self-input'].split()
+    tokens = preference['self_input'].split()
 
-    # show type (not in db) 
+    # show type 
     show_type = '2D'
     SHOW_TYPES = {'2D', '3D', 'IMAX', 'DOLBY'}
     for token in tokens:
@@ -89,79 +89,119 @@ def augment_preference(preference):
 
     # cinema rate 
     rating = 0.0
-    PATTERN = re.compile('\d+(\.\d+)?')
-    ratings = re.findall(PATTERN, preference['self-input'])
+    PATTERN = re.compile("[-+]?\d*\.\d+|\d+")
+    ratings = re.findall(PATTERN, preference['self_input'])
     if len(ratings) > 0:
         rating = float(ratings[0])
     preference['rating'] = rating
 
-    # cinema surrounding (not in db)
-    hasRestaurant = False
+    # cinema surrounding 
+    hasRestaurant = 0
     RESTAURANT = 'restaurant'
     if RESTAURANT in set(tokens):
-        hasRestaurant = True
+        hasRestaurant = 1
     preference['hasRestaurant'] = hasRestaurant
 
-    # seat type (too complex)
+    # map date to day
+    # print(preference['date'])
+    preference['day'] = int(preference['date'].split('-')[2]) % 7
 
+    # print(preference)
     return preference
 
 def select_seats(show, num_tickets, conn):
     # change show's seat map and update db
-    # selected_seats = ['f1', 'g2']
-    LEN_ROW = LEN_COL = 10
-    ROW_IDS = 'abcdefghij' 
+    # ROW_IDS = 'abcdefghij' 
+    ROW_IDS = 'FGHIJKLMNP' # 造假
     COL_IDS = [str(i) for i in range(1, 11)]
     selected_seats = None
-    seat_map = []
 
-    # deserialize
-    seats = show[-1].split(',')
-    for row_start in range(0, len(seats), LEN_ROW):
-        seat_map.append(''.join(seats[row_start : row_start + LEN_ROW])) # like '0110000000'
+    seat_map = []
+    rows = show['seat_map'].split(';')
 
     # find continuous
-    for i, row in enumerate(seat_map):
+    for i, row in enumerate(rows):
         if '0' * num_tickets in row:
             row_num = ROW_IDS[i]
             col_start_num = row.index('0' * num_tickets)
             col_nums = COL_IDS[col_start_num : col_start_num + num_tickets]
             selected_seats = [row_num + col_num for col_num in col_nums]
-            break
+            # update occupied
+            row = row[:col_start_num] + '1' * num_tickets + row[col_start_num + num_tickets:]
+            seat_map.append(row)
+            start = i + 1 
+            break       
+    for i in range(start, len(rows)):
+        seat_map.append(rows[i])
+    # print(selected_seats)
+    # print(seat_map)
+
+    # store back to db  
+    seat_map = ';'.join(seat_map)
+    query = "UPDATE shows \
+             SET seat_map = \"{}\" \
+             WHERE id = {}".format(seat_map, show['sid']) 
+    # print(query)
+    cur = conn.cursor()
+    cur.execute(query)
+
+    # # test: reload check change
+    # query = "SELECT * FROM shows WHERE id = {}".format(show['sid'])
+    # cur.execute(query)
+    # res = cur.fetchall()[0]
+    # print(res)
 
     return selected_seats
 
 def filter_shows(mname, preference, conn):
     # num_tickets, time, date, zip, show_type, rating, hasRestaurant
-    cur = conn.cursor()
-    cur.execute("SELECT mid FROM movies WHERE name = " + mname)
-    mid = cur.fetchall()[0]
+    preference = augment_preference(preference)
 
-    query = "SELECT id, date, time, c.name, price, seat_map \
+    # # test 
+    # preference['show_type'] = '2D'
+    # preference['time'] = '13:00'
+    # preference['date'] = 3
+    # preference['rating'] = 0.0
+    # preference['hasRestaurant'] = 1
+
+    cur = conn.cursor()
+    query = "SELECT id FROM movies WHERE name = \"" + mname + "\""
+    # print(query)
+    cur.execute(query)
+    mid = cur.fetchall()[0]['id']
+    # print('mid:', mid)
+    # print()
+
+    query = "SELECT s.id as sid, date_ as day, time_ as time, c.name as cinema_name, c.addr as addr, price, seat_map \
             FROM shows s, cinemas c \
             WHERE movie_id = {}\
-                AND s.time >= {} \
-                AND s.date = {} \
-                AND s.show_type = {} \
+                AND s.time_ >= \"{}\" \
+                AND s.date_ = {} \
+                AND s.type = \"{}\" \
                 AND c.zip = {} \
                 AND c.google_score >= {} \
                 AND c.restaurant = {}".format(mid,
                                               preference['time'], 
-                                              preference['date'], 
-                                              preference['zip'], 
-                                              preference['show_type'], 
+                                              preference['day'], 
+                                              preference['show_type'],
+                                              preference['zip'],  
                                               preference['rating'], 
                                               preference['hasRestaurant'])
+    # print(query)
     cur.execute(query)
-    showings = cur.fetchall() # return list of tups
+    showings = cur.fetchall() # return list of dict
+    # print(len(showings))
+    # pprint(showings[:5])
 
     # run seat selection algo
-    for i, show in enumerate(showings):
+    for i, show in enumerate(showings[:2]):
+        # print(show)
         seats = select_seats(show, preference['num_tickets'], conn)
         if not seats:
             del showings[i]
         else:
             show['selected_seats'] = seats
+            show['date'] = preference['date']
 
     return showings
 
@@ -182,3 +222,28 @@ def get_movies(conn):
 def recommend(uid):
     mids = ['m001', 'm003']
     return mids
+
+
+
+# test 
+import sqlite3
+from sqlite3 import Error
+from pprint import pprint
+
+def sql_connection():
+    try:
+        conn = sqlite3.connect('iX.db', check_same_thread=False)
+        conn.row_factory = lambda c, r: dict(zip([col[0] for col in c.description], r))
+        print('DB connected')
+        return conn
+    except Error:
+        print(Error)
+
+if __name__ == "__main__":
+    mname = "Trolls World Tour"
+    conn = sql_connection()
+    # preference = {'num_tickets': 3, 'time': "13:00", 'date': 3, 'zip': 10003, 'show_type': '2D', 'rating': 0.0, 'hasRestaurant': 1}
+    preference = {'num_tickets': 3, 'time': "13:00", 'date': '04/22/2020', 'zip': '10003', 'self_input': 'hahah restaurant 4'}
+    # preference = augment_preference(preference)
+    showings = filter_shows(mname, preference, conn)
+    print(showings[:2])
