@@ -5,13 +5,13 @@ from sklearn.utils.extmath import randomized_svd
 
 
 def get_movie_recommendation(user_ratings: List[List[int]],
-                             movie_db: Dict[int, Dict],
+                             movie_db: List[Dict],
                              user_id: int,
                              num_genres: int = 5,
                              limit: int = 20) -> List[str]:
     """
     :param user_ratings: user rating matrix for all users and movies s.t.
-                         user_ratings[i][j] = rating of user_id i for movie_id j
+                         user_ratings[i, j] = rating of user_id i for movie_id j
     :param user_id: current user to be recommended
     :param movie_db: movie database <movie_id, movie metadata>
     :param num_genres: predicted number of movie genres

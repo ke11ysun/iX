@@ -52,6 +52,7 @@ def explore():
     #     print(len(movies))
     #     movies.append(movie)
     movies = get_movies(conn)
+    print(movies)
     return render_template("explore.html", len=len(movies), movies=movies)
 
 @app.route("/form/<mname>", methods=['POST', 'GET'])
