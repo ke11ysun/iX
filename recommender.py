@@ -19,10 +19,13 @@ def get_movie_recommendation(user_ratings: List[List[int]],
     :return: a list of recommended movies from movie_db for user_id,
              ordered from most recommended to least recommended
     """
+    # model source: page 3 and 4 of
+    # https://www.overleaf.com/project/5d754ab8d17be90001cf2a69
     user_ratings_np = np.array(user_ratings)
     U, s, VT = randomized_svd(user_ratings_np, num_genres)
     Sigma = np.diag(s)
     V = VT.T
+    # TODO: unused for now
     user_genre_preferences = U[user_id]
     user_movie_predicted_rating = user_ratings_np[user_id] @ V @ VT
 
