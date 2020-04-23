@@ -1,59 +1,54 @@
-from datetime import datetime
-from typing import Dict, List
+from typing import List, Dict
 
 import numpy as np
-import numpy.linalg as la
+from sklearn.utils.extmath import randomized_svd
 
 
-class Preference:
-
-    def __init__(self, preferred_datetimes: List[datetime],
-                 preferred_zipcode: int, extras: str, weight: int = 0):
-        """
-        :param preferred_datetimes: preferred list of date + time in the order
-                                    of most preferred to least preferred
-        :param preferred_zipcode: preferred areas ex. 10044
-        :param extras: extra preferences in natural language
-        :param weight: an optional weight for tie breakers. higher weight can
-                       be taken into more consideration in all preferences
-        """
-        self.preferred_datetimes = preferred_datetimes
-        self.preferred_zipcode = preferred_zipcode
-        self.extras = extras
-        self.weight = weight
-
-
-class Event:
-
-    def __init__(self, event_datetime: datetime, zipcode: int):
-        self.event_datetime = event_datetime
-        self.zipcode = zipcode
-
-
-def get_ticket_recommendation(events: Dict[str, Event],
-                              preferences: Dict[str, Preference]) -> List[str]:
+def get_movie_recommendation(user_ratings: List[List[int]],
+                             movie_db: Dict[int, Dict],
+                             user_id: int,
+                             num_genres: int = 5,
+                             limit: int = 20) -> List[str]:
     """
-    :param events: event database as <event_id, event metadata>
-    :param preferences: collected preferences as <user_id, user preference>
-    :return: a list of event_id ordered from most recommended to least recommended
+    :param user_ratings: user rating matrix for all users and movies s.t.
+                         user_ratings[i][j] = rating of user_id i for movie_id j
+    :param user_id: current user to be recommended
+    :param movie_db: movie database <movie_id, movie metadata>
+    :param num_genres: predicted number of movie genres
+    :param limit: max number of items in the recommended list
+    :return: a list of recommended movies from movie_db for user_id,
+             ordered from most recommended to least recommended
     """
-    num_people = len(preferences)
-    recommendations = list(events.keys())
-    # TODO: filter events based on preferences
+    user_ratings_np = np.array(user_ratings)
+    U, s, VT = randomized_svd(user_ratings_np, num_genres)
+    Sigma = np.diag(s)
+    V = VT.T
+    user_genre_preferences = U[user_id]
+    user_movie_predicted_rating = user_ratings_np[user_id] @ V @ VT
 
-    return recommendations
+    # filter movies that is showing in cinemas
+    recommendations = list(
+            filter(lambda movie_id: movie_db[movie_id]["is_showing"],
+                   range(len(movie_db))))
+
+    # sort by predicted user ratings (from the highest to the lowest)
+    recommendations.sort(
+            key=lambda movie_id: user_movie_predicted_rating[movie_id],
+            reverse=True)
+    # TODO: sort by movie length
+
+    return recommendations[:limit]
 
 
-def get_movie_recommendation(user_ratings: np.ndarray,
-                             user_id: int) -> List[str]:
-    u, sigma, vt = la.svd(user_ratings, full_matrices=False)
-    v = vt.T
-    user = user_ratings[user_id]
-    user_genre_preference = user @ v
-    recommendations = []
-
-    return recommendations
-
-
-np.set_printoptions(precision=2, suppress=True)
-get_movie_recommendation(None, None)
+if __name__ == '__main__':
+    np.set_printoptions(precision=2, suppress=True)
+    print(get_movie_recommendation([[10, 10, 10, 0, 0],
+                                    [10, 9, 9, 1, 0],
+                                    [0, 0, 0, 10, 8],
+                                    [0, 0, 2, 10, 8],
+                                    [0, 1, 1, 10, 10]],
+                                   [{"is_showing": True, "length": 100},
+                                    {"is_showing": False, "length": 105},
+                                    {"is_showing": False, "length": 80},
+                                    {"is_showing": True, "length": 100},
+                                    {"is_showing": True, "length": 100}], 0, 2))
