@@ -21,11 +21,24 @@
     <link rel="stylesheet" href="/static/css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="/static/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+
+    <script type="text/javascript">
+        function copy_link() {
+            const el = document.createElement('textarea');
+            el.value = "http://localhost:8080/form/Trolls World Tour/pid=1";
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert("Link copied to clipboard: \n" + el.value);            
+        }
+     </script>
 </head>
 
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
+        <input type="text" value="8080/forms?v=pKlSvrKpuD8" id="input_for_clipboard" hidden>
         <div class="loader"></div>
     </div>
 
@@ -64,12 +77,12 @@
                     <div class="breadcrumb-text">
                         <h3>Tickets Recommended</h3>
                     </div>
-                </div>
+                </div>   
                 <div class="col-lg-6 col-md-6 text-right">
                     <div class="breadcrumb-option">
-                        <a href="#" class="chain-icon"><i class="fa fa-chain"></i> Link</a>
-                        <a href="./form.html" class="chain-icon"><i class="fa fa-edit"></i> Edit</a>
-                        <a href="#" class="chain-icon"><i class="fa fa-refresh"></i> Refresh</a>
+                        <a href="#" class="chain-icon" onclick="return copy_link();"><i class="fa fa-chain"></i> Link</a>
+                        <a href="/form/{{mname}}" class="chain-icon"><i class="fa fa-edit"></i> Edit</a>
+                        <a href="/tickets/{{mname}}" class="chain-icon"><i class="fa fa-refresh"></i> Refresh</a>
                         <!-- <span>Movies</span> -->
                     </div>
                 </div>
@@ -108,8 +121,8 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="bi-text" style="text-align: right;">
-                                    <h5>$ 30</h5>
-                                    <a href="#" class="site-btn">Book Now</a>
+                                    <h5>$ {{showings[i]['price']}}</h5>
+                                    <a href="/success" class="site-btn">Book Now</a>
                                 </div>
                             </div>
                         </div>
