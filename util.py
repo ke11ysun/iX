@@ -118,6 +118,7 @@ def select_seats(show, num_tickets, conn):
 
     seat_map = []
     rows = show['seat_map'].split(';')
+    start = 0
 
     # find continuous
     for i, row in enumerate(rows):
@@ -216,7 +217,7 @@ def get_movie(mid):
 
 def get_movies(conn):
     cur = conn.cursor()
-    cur.execute("SELECT * FROM movies LIMIT 10")
+    cur.execute("SELECT * FROM movies LIMIT 12")
     movies = cur.fetchall()
     return movies
 
@@ -224,6 +225,31 @@ def recommend(uid):
     mids = ['m001', 'm003']
     return mids
 
+def safe_cast(form, key, default, try_int=False):
+    try:
+        if try_int: return int(form[key])
+        else: return form[key] if form[key] != "" else default
+    except:
+        return default
+
+def update_purchase(conn, preference):
+    cur = conn.cursor()
+    cur.execute("UPDATE purchase SET num_tickets = {}, \
+                                    show_time = '{}', \
+                                    show_date = '{}', \
+                                    zip = '{}', \
+                                    self_input = '{}' WHERE id = 1".format(
+                                        preference["num_tickets"], 
+                                        preference["time"], 
+                                        preference["date"], 
+                                        preference["zip"], 
+                                        preference["self_input"]))
+    conn.commit()
+
+def get_purchase(conn):
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM purchase LIMIT 1")
+    return cur.fetchall()
 
 
 # test 
@@ -244,7 +270,7 @@ if __name__ == "__main__":
     mname = "Trolls World Tour"
     conn = sql_connection()
     # preference = {'num_tickets': 3, 'time': "13:00", 'date': 3, 'zip': 10003, 'show_type': '2D', 'rating': 0.0, 'hasRestaurant': 1}
-    preference = {'num_tickets': 3, 'time': "13:00", 'date': '04/22/2020', 'zip': '10003', 'self_input': 'hahah restaurant 4'}
+    preference = {'num_tickets': 3, 'time': "13:00", 'date': '2020-04-22', 'zip': '10003', 'self_input': 'hahah restaurant 4'}
     # preference = augment_preference(preference)
     showings = filter_shows(mname, preference, conn)
     print(showings[:2])

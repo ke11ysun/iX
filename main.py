@@ -4,7 +4,7 @@
 
 from flask import Flask, render_template, redirect, request, session, url_for
 from util import recommend, augment_preference, filter_shows, select_seats
-from util import get_user, get_movies
+from util import get_user, get_movies, safe_cast, update_purchase, get_purchase
 
 import sqlite3
 from sqlite3 import Error
@@ -60,6 +60,10 @@ def form(mname):
     session['mname'] = mname
     return render_template("form.html", mname=mname)
 
+@app.route("/form/<mname>/<random>", methods=['POST', 'GET'])
+def link_form(mname, random):
+    return render_template("form.html", mname=mname)
+
 @app.route("/inprogress", methods=['POST', 'GET'])
 def inprogress():
     return render_template("inprogress.html")
@@ -68,24 +72,39 @@ def inprogress():
 def purchased():
     return render_template("purchased.html")
 
+@app.route("/success", methods=['POST', 'GET'])
+def success():
+    return render_template("success.html")
+
 @app.route("/tickets", methods=['POST', 'GET'])
 def tickets():
+    print("form", request.form)
     preference = {}
-    preference['num_tickets'] = int(request.form['num']) # cast to int
-    preference['time'] = request.form['time']
-    preference['date'] = request.form['date']
-    preference['zip'] = request.form['zip_code']
-    preference['self_input'] = request.form['self_input']
+    preference['num_tickets'] = safe_cast(request.form, 'num', 3, True) # cast to int
+    preference['time'] = safe_cast(request.form, 'time', "13:00")
+    preference['date'] = safe_cast(request.form, 'date', "2020-04-22")
+    preference['zip'] = safe_cast(request.form, 'zip_code', "10003")
+    preference['self_input'] = safe_cast(request.form, 'self_input', "")
+    mname = safe_cast(session, 'mname', "Trolls World Tour")
     pprint(preference)
-    # # filtering with rank, didn't test 0421
-    showings = filter_shows(session['mname'], preference, conn)
-    pprint(showings[0])
-    return render_template("tickets.html", len=len(showings), showings=showings)
+    update_purchase(conn, preference)
 
-    # return render_template("tickets.html")
+    # # filtering with rank, didn't test 0421
+    showings = filter_shows(mname, preference, conn)
+    print("Recommended showings: ", showings)
+    # return render_template("index.html")
+    return render_template("tickets.html", len=len(showings), showings=showings, mname=mname)
+
+@app.route("/tickets/<mname>", methods=['GET'])
+def tickets_refresh(mname):
+    preference = get_purchase(conn)[0]
+    preference['time'] = preference['show_time']
+    preference['date'] = preference['show_date']
+    showings = filter_shows(mname, preference, conn)
+    return render_template("tickets.html", len=len(showings), showings=showings, mname=mname)
 
 
 
 if __name__ == "__main__":
     conn = sql_connection()
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run(host= '0.0.0.0', port="8080")
