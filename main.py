@@ -51,7 +51,22 @@ def explore():
     #     print('=======')
     #     print(len(movies))
     #     movies.append(movie)
-    movies = get_movies(conn)
+    
+    ## if logined and user_id  in session:
+    # user_id = session['user_id'] 
+    # now test with user_id = 0,1,...,20:
+    user_id = 0
+    recmmend_movies = recommend_movie(user_id=user_id,
+                           recommend_range=None,
+                           recommend_number=5)
+    print('recommend movies:\n',recmmend_movies)
+    
+    # the recommend tuple of movie ids,sorted descendingly by recommend scores:
+    mids = tuple(recmmend_movies.movie_id)
+    print('mids:\n',mids)
+    
+    # select the movies where id in mids:
+    movies = get_movies(conn,mids)
     print(movies)
     return render_template("explore.html", len=len(movies), movies=movies)
 
