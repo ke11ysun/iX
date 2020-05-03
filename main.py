@@ -75,15 +75,21 @@ def success():
 
 @app.route("/tickets", methods=['POST', 'GET'])
 def tickets():
-    print("form", request.form)
-    print("form", request.form.to_dict())
+    form = dict(request.form.lists())
+    for k, v in form.items():
+        content = [s for s in v if s != '']
+        if len(content) > 0:
+            form[k] = content[0]
+        else:
+            form[k] = ''
+    print('form', form)
+
     preference = {}
-    preference['num_tickets'] = safe_cast(request.form, 'num', 3, True) # cast to int
-    preference['time'] = safe_cast(request.form, 'time', "13:00")
-    print('preference time', preference['time'])
-    preference['date'] = safe_cast(request.form, 'date', "2020-04-22")
-    preference['zip'] = safe_cast(request.form, 'zip_code', "10003")
-    preference['self_input'] = safe_cast(request.form, 'self_input', "")
+    preference['num_tickets'] = safe_cast(form, 'num', 3, True) # cast to int
+    preference['time'] = safe_cast(form, 'time', "13:00")
+    preference['date'] = safe_cast(form, 'date', "2020-04-22")
+    preference['zip'] = safe_cast(form, 'zip_code', "10003")
+    preference['self_input'] = safe_cast(form, 'self_input', "")
     mname = safe_cast(session, 'mname', "Trolls World Tour")
     pprint(preference)
     update_purchase(conn, preference)

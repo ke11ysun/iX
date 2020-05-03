@@ -259,6 +259,7 @@ def sql_connection():
         print(Error)
 
 if __name__ == "__main__":
+    print(sqlite3.version)
     # mname = "Trolls World Tour"
     conn = sql_connection()
     # preference = {'num_tickets': 3, 'time': "13:00", 'date': '2020-07-07', 'zip': '10003', 'self_input': '4 star cinema'} # basic case
