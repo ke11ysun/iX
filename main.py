@@ -43,12 +43,12 @@ def explore():
     
     # tuple of recommended movie ids, sorted descendingly by recommendation scores:
     # mids = tuple(recmmend_movies.movie_id)
+    # kelly: I can't get recommendation from kaixi's code, so use some mids to test 
     mids = (1,2,3)
     print('mids:\n', mids)
     
     # select movies of which ids are in mids:
-    # movies = get_movies(conn, mids)
-    movies = get_movies(conn)
+    movies = get_movies(conn, mids)
     # print(movies)
     return render_template("explore.html", len=len(movies), movies=movies)
 

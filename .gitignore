@@ -6,3 +6,4 @@ data/
 venv/
 notes.txt
 iX.db-journal
+__pycache__/util.cpython-36.pyc
