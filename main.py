@@ -5,6 +5,7 @@
 from flask import Flask, render_template, redirect, request, session, url_for
 from util import recommend, augment_preference, filter_shows, select_seats
 from util import get_user, get_movies, safe_cast, update_purchase, get_purchase
+from movie_recommender import recommend_movie
 
 import sqlite3
 from sqlite3 import Error
@@ -66,7 +67,8 @@ def explore():
     print('mids:\n', mids)
     
     # select movies of which ids are in mids:
-    movies = get_movies(conn, mids)
+    # movies = get_movies(conn, mids)
+    movies = get_movies(conn)
     print(movies)
     return render_template("explore.html", len=len(movies), movies=movies)
 
