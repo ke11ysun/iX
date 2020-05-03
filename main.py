@@ -1,15 +1,10 @@
-
-# env local python3
-# cmd "python3 main.py"
-
 from flask import Flask, render_template, redirect, request, session, url_for
 from util import recommend, augment_preference, filter_shows, select_seats
 from util import get_user, get_movies, safe_cast, update_purchase, get_purchase
 from movie_recommender import recommend_movie
-
+import numpy as np
 import sqlite3
 from sqlite3 import Error
-
 from pprint import pprint
 
 app = Flask(__name__)
@@ -34,7 +29,6 @@ def index():
 def explore():
     ## if logged in and user_id in session:
     # user_id = session['user_id'] 
-    # now test with user_id = 0,1,...,20:
     user_id = 0
     recmmend_movies = recommend_movie(user_id=user_id,
                            recommend_range=None,
@@ -44,12 +38,12 @@ def explore():
     # tuple of recommended movie ids, sorted descendingly by recommendation scores:
     # mids = tuple(recmmend_movies.movie_id)
     # kelly: I can't get recommendation from kaixi's code, so use some mids to test 
-    mids = (1,2,3)
-    print('mids:\n', mids)
+    # kelly: from ross's db the only workable mids are 1, 6, 8, 12, 14, 15, 21, 28, 33, 44, 54, 107, 352
+    mids = tuple(np.random.choice([1, 6, 8, 12, 14, 15, 21, 28, 33, 44, 54, 107, 352], size=6, replace=False))
+    print('recommend mids:\n', mids)
     
     # select movies of which ids are in mids:
     movies = get_movies(conn, mids)
-    # print(movies)
     return render_template("explore.html", len=len(movies), movies=movies)
 
 @app.route("/form/<mname>", methods=['POST', 'GET'])
@@ -82,7 +76,7 @@ def tickets():
             form[k] = content[0]
         else:
             form[k] = ''
-    print('form', form)
+    print('form:\n', form)
 
     preference = {}
     preference['num_tickets'] = safe_cast(form, 'num', 3, True) # cast to int
@@ -95,7 +89,6 @@ def tickets():
     update_purchase(conn, preference)
 
     showings = filter_shows(mname, preference, conn)
-    # print("Recommended showings: ", showings)
     return render_template("tickets.html", len=len(showings), showings=showings, mname=mname)
 
 @app.route("/tickets/<mname>", methods=['GET'])

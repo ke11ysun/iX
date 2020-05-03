@@ -1,76 +1,3 @@
-u1 = {
-        'username': 'kelly',
-        'password': 'pswd',
-        'uid': 'u001',
-        'num_tickets': 2,
-        'date': '2020-04-14', 
-        'time': '4:00',
-        'zip': 10044,
-        'card_number': 'card0001'
-    }
-
-u2 = {
-        'username': 'sjx',
-        'password': 'hahaha',
-        'uid': 'u002',
-        'num_tickets': 3,
-        'date': '2020-02-02', 
-        'time': '0:00',
-        'zip': 10044,
-        'card_number': 'card0002'
-    }
-
-users = {
-    ('kelly', 'pswd'): u1,
-    ('sjx', 'hahaha'): u2
-}
-
-m1 = {
-        'mid': 'm001',
-        'name': 'Life of Brian',
-        'genre': 'Comedy'
-    }
-
-m2 = {
-        'mid': 'm002',
-        'name': 'The Shining',
-        'genre': 'Horror'
-    }
-
-m3 = {
-        'mid': 'm003',
-        'name': 'Lock Stock and Two Smoking Barriels',
-        'genre': 'Drama'
-    }
-
-movies = {
-    'm001': m1,
-    'm002': m2,
-    'm003': m3
-}
-
-s1 = {
-    'sid': 's001',
-    'date': '1900-01-01',
-    'time': '0:00', 
-    'cinema': 'AMC25',
-    'price': 35
-}
-
-s2 = {
-    'sid': 's002',
-    'date': '1800-01-01',
-    'time': '0:00', 
-    'cinema': 'AMC34',
-    'price': 80
-}
-
-showings = {
-    's001': s1,
-    's002': s2
-}
-
-
 import re
 
 def augment_preference(preference):
@@ -105,7 +32,7 @@ def augment_preference(preference):
     # map date to day
     preference['day'] = int(preference['date'].split('-')[2]) % 7
 
-    # print(preference)
+    print('preference:\n', preference)
     return preference
 
 def select_seats(show, num_tickets, conn):
@@ -134,15 +61,14 @@ def select_seats(show, num_tickets, conn):
     for i in range(start, len(rows)):
         seat_map.append(rows[i])
 
-    # # store back to db  
-    # seat_map = ';'.join(seat_map)
-    # query = "UPDATE shows \
-    #          SET seat_map = \"{}\" \
-    #          WHERE id = {}".format(seat_map, show['sid']) 
-    # print(query)
-    # cur = conn.cursor()
-    # cur.execute(query)
-    # conn.commit()
+    # store back to db  
+    seat_map = ';'.join(seat_map)
+    query = "UPDATE shows \
+             SET seat_map = \"{}\" \
+             WHERE id = {}".format(seat_map, show['sid']) 
+    cur = conn.cursor()
+    cur.execute(query)
+    conn.commit()
 
     # # test: reload check change
     # query = "SELECT seat_map FROM shows WHERE id = {}".format(show['sid'])
@@ -194,28 +120,12 @@ def filter_shows(mname, preference, conn):
 
     return showings
 
-
-
-def get_user(username, password):
-    return users[(username, password)]
-
-def get_movie(mid):  
-    return movies[mid]
-
-def get_movies(conn, mids=None):
+def get_movies(conn, mids=(1, 6, 8, 12, 14, 15, 21, 28, 33, 44, 54, 107, 352)):
     cur = conn.cursor()
-    if not mids:
-        query = "SELECT * FROM movies LIMIT 12"
-    else:
-        query = "SELECT * FROM movies WHERE id in {}".format(mids)
-    print(query)
+    query = "SELECT * FROM movies WHERE id in {}".format(mids)
     cur.execute(query)
     movies = cur.fetchall()
     return movies
-
-def recommend(uid):
-    mids = ['m001', 'm003']
-    return mids
 
 def safe_cast(form, key, default, try_int=False):
     try:
@@ -259,7 +169,6 @@ def sql_connection():
         print(Error)
 
 if __name__ == "__main__":
-    print(sqlite3.version)
     # mname = "Trolls World Tour"
     conn = sql_connection()
     # preference = {'num_tickets': 3, 'time': "13:00", 'date': '2020-07-07', 'zip': '10003', 'self_input': '4 star cinema'} # basic case
@@ -267,7 +176,3 @@ if __name__ == "__main__":
     # # preference = {'num_tickets': 8, 'time': "20:00", 'date': '2020-05-07', 'zip': '10010', 'self_input': 'aisle seats'} # seat selection: 0505: 13 -> 12, 0507: 21 -> 18 
     # showings = filter_shows(mname, preference, conn)
     # print(showings[:2])
-
-    mids = (1,2,3)
-    movies = get_movies(conn, mids)
-    print(movies)
