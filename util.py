@@ -202,9 +202,14 @@ def get_user(username, password):
 def get_movie(mid):  
     return movies[mid]
 
-def get_movies(conn):
+def get_movies(conn, mids=None):
     cur = conn.cursor()
-    cur.execute("SELECT * FROM movies LIMIT 12")
+    if not mids:
+        query = "SELECT * FROM movies LIMIT 12"
+    else:
+        query = "SELECT * FROM movies WHERE id in {}".format(mids)
+    print(query)
+    cur.execute(query)
     movies = cur.fetchall()
     return movies
 
@@ -254,10 +259,14 @@ def sql_connection():
         print(Error)
 
 if __name__ == "__main__":
-    mname = "Trolls World Tour"
+    # mname = "Trolls World Tour"
     conn = sql_connection()
-    preference = {'num_tickets': 3, 'time': "13:00", 'date': '2020-07-07', 'zip': '10003', 'self_input': '4 star cinema'} # basic case
-    # preference = {'num_tickets': 5, 'time': "18:00", 'date': '2020-05-05', 'zip': '10044', 'self_input': 'IMAX restaurant'} # more strict constraint: 0505:1, 0507: 6 
-    # preference = {'num_tickets': 8, 'time': "20:00", 'date': '2020-05-07', 'zip': '10010', 'self_input': 'aisle seats'} # seat selection: 0505: 13 -> 12, 0507: 21 -> 18 
-    showings = filter_shows(mname, preference, conn)
-    print(showings[:2])
+    # preference = {'num_tickets': 3, 'time': "13:00", 'date': '2020-07-07', 'zip': '10003', 'self_input': '4 star cinema'} # basic case
+    # # preference = {'num_tickets': 5, 'time': "18:00", 'date': '2020-05-05', 'zip': '10044', 'self_input': 'IMAX restaurant'} # more strict constraint: 0505:1, 0507: 6 
+    # # preference = {'num_tickets': 8, 'time': "20:00", 'date': '2020-05-07', 'zip': '10010', 'self_input': 'aisle seats'} # seat selection: 0505: 13 -> 12, 0507: 21 -> 18 
+    # showings = filter_shows(mname, preference, conn)
+    # print(showings[:2])
+
+    mids = (1,2,3)
+    movies = get_movies(conn, mids)
+    print(movies)

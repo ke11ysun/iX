@@ -5,6 +5,7 @@
 from flask import Flask, render_template, redirect, request, session, url_for
 from util import recommend, augment_preference, filter_shows, select_seats
 from util import get_user, get_movies, safe_cast, update_purchase, get_purchase
+from movie_recommender import recommend_movie
 
 import sqlite3
 from sqlite3 import Error
@@ -31,27 +32,6 @@ def index():
 
 @app.route("/explore", methods=['POST', 'GET'])
 def explore():
-    # if 'recommended_mids' in session:
-    #     mids = session['recommended_mids']
-    #     print('has mids')
-    # else:
-    #     print('no mids')
-    #     return render_template('explore.html', error="no mids")
-
-    # movies = []
-    # print('before for')
-    # mids = ['m001', 'm002', 'm003']
-    # for mid in mids:
-    #     movie = {}
-    #     entity = get_movie(mid)
-    #     movie['mid'] = mid
-    #     movie['name'] = entity['name']
-    #     movie['genre'] = entity['genre']
-    #     # etc
-    #     print('=======')
-    #     print(len(movies))
-    #     movies.append(movie)
-    
     ## if logged in and user_id in session:
     # user_id = session['user_id'] 
     # now test with user_id = 0,1,...,20:
@@ -62,12 +42,14 @@ def explore():
     print('recommend movies:\n', recmmend_movies)
     
     # tuple of recommended movie ids, sorted descendingly by recommendation scores:
-    mids = tuple(recmmend_movies.movie_id)
+    # mids = tuple(recmmend_movies.movie_id)
+    mids = (1,2,3)
     print('mids:\n', mids)
     
     # select movies of which ids are in mids:
-    movies = get_movies(conn, mids)
-    print(movies)
+    # movies = get_movies(conn, mids)
+    movies = get_movies(conn)
+    # print(movies)
     return render_template("explore.html", len=len(movies), movies=movies)
 
 @app.route("/form/<mname>", methods=['POST', 'GET'])
@@ -94,9 +76,11 @@ def success():
 @app.route("/tickets", methods=['POST', 'GET'])
 def tickets():
     print("form", request.form)
+    print("form", request.form.to_dict())
     preference = {}
     preference['num_tickets'] = safe_cast(request.form, 'num', 3, True) # cast to int
     preference['time'] = safe_cast(request.form, 'time', "13:00")
+    print('preference time', preference['time'])
     preference['date'] = safe_cast(request.form, 'date', "2020-04-22")
     preference['zip'] = safe_cast(request.form, 'zip_code', "10003")
     preference['self_input'] = safe_cast(request.form, 'self_input', "")
@@ -104,10 +88,8 @@ def tickets():
     pprint(preference)
     update_purchase(conn, preference)
 
-    # # filtering with rank, didn't test 0421
     showings = filter_shows(mname, preference, conn)
-    print("Recommended showings: ", showings)
-    # return render_template("index.html")
+    # print("Recommended showings: ", showings)
     return render_template("tickets.html", len=len(showings), showings=showings, mname=mname)
 
 @app.route("/tickets/<mname>", methods=['GET'])

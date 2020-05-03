@@ -3,7 +3,6 @@ import sys
 import pickle
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy import linalg
