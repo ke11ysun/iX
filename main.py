@@ -1,6 +1,5 @@
 from flask import Flask, render_template, redirect, request, session, url_for
-from util import recommend, augment_preference, filter_shows, select_seats
-from util import get_user, get_movies, safe_cast, update_purchase, get_purchase
+from util import filter_shows, get_movies, safe_cast, update_purchase, get_purchase
 from movie_recommender import recommend_movie
 import numpy as np
 import sqlite3
