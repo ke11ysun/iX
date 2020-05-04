@@ -264,6 +264,16 @@ ol {
 	display: inline-block;
 }
 
+.logo .login {
+	color: white; 
+	margin-left: 35px; 
+	font-weight: 700;
+}
+
+.logo .login:hover {
+	color: #a77377;
+}
+
 .main-menu {
 	text-align: right;
 }
@@ -904,6 +914,47 @@ ol {
 }
 
 /*---------------------
+  Login Section
+-----------------------*/
+
+.login-section {
+	width: 360px;
+	padding: 8% 0 0;
+	margin: auto;
+	/* background: #222222; */
+}
+
+.login-section .form {
+	position: relative;
+	z-index: 1;
+	background: #222222;
+	/* background: #FFFFFF; */
+	max-width: 360px;
+	margin: 0 auto 100px;
+	padding: 45px;
+	text-align: center;
+	/* box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24); */
+}
+
+.login-section .container {
+	position: relative;
+	z-index: 1;
+	max-width: 300px;
+	margin: 0 auto;
+}
+
+.login-section .message {
+	font-size: 14px;
+	margin-top: 20px;
+}
+
+.login-section .message a {
+	color: #a77377;
+	font-size: 14px;
+	margin-top: 20px;
+}
+
+/*---------------------
   Blog Section
 -----------------------*/
 
@@ -1317,7 +1368,8 @@ ol {
 }
 
 .comment-form input,
-.contact-form input {
+.contact-form input,
+.login-form input {
 	height: 50px;
 	width: 100%;
 	border: none;
@@ -1332,63 +1384,75 @@ ol {
 }
 
 .comment-form input::-webkit-input-placeholder,
-.contact-form input::-webkit-input-placeholder {
+.contact-form input::-webkit-input-placeholder,
+.login-form input::-webkit-input-placeholder {
 	color: #b3b3b3;
 }
 
 .comment-form input::-moz-placeholder,
-.contact-form input::-moz-placeholder {
+.contact-form input::-moz-placeholder,
+.login-form input::-moz-placeholder {
 	color: #b3b3b3;
 }
 
 .comment-form input:-ms-input-placeholder,
-.contact-form input:-ms-input-placeholder {
+.contact-form input:-ms-input-placeholder,
+.login-form input:-ms-input-placeholder {
 	color: #b3b3b3;
 }
 
 .comment-form input::-ms-input-placeholder,
-.contact-form input::-ms-input-placeholder {
+.contact-form input::-ms-input-placeholder,
+.login-form input::-ms-input-placeholder {
 	color: #b3b3b3;
 }
 
 .comment-form input::placeholder,
-.contact-form input::placeholder {
+.contact-form input::placeholder,
+.login-form input::placeholder {
 	color: #b3b3b3;
 }
 
 .comment-form input:focus,
-.contact-form input:focus {
+.contact-form input:focus,
+.login-form input:focus {
 	background: #ffffff;
 	color: #0d0a27;
 }
 
 .comment-form input:focus::-webkit-input-placeholder,
-.contact-form input:focus::-webkit-input-placeholder {
+.contact-form input:focus::-webkit-input-placeholder,
+.login-form input:focus::-webkit-input-placeholder {
 	color: #0d0a27;
 }
 
 .comment-form input:focus::-moz-placeholder,
-.contact-form input:focus::-moz-placeholder {
+.contact-form input:focus::-moz-placeholder,
+.login-form input:focus::-moz-placeholder {
 	color: #0d0a27;
 }
 
 .comment-form input:focus:-ms-input-placeholder,
-.contact-form input:focus:-ms-input-placeholder {
+.contact-form input:focus:-ms-input-placeholder,
+.login-form input:focus:-ms-input-placeholder {
 	color: #0d0a27;
 }
 
 .comment-form input:focus::-ms-input-placeholder,
-.contact-form input:focus::-ms-input-placeholder {
+.contact-form input:focus::-ms-input-placeholder,
+.login-form input:focus::-ms-input-placeholder {
 	color: #0d0a27;
 }
 
 .comment-form input:focus::placeholder,
-.contact-form input:focus::placeholder {
+.contact-form input:focus::placeholder,
+.login-form input:focus::placeholder {
 	color: #0d0a27;
 }
 
 .comment-form textarea,
-.contact-form textarea {
+.contact-form textarea,
+.login-form textarea {
 	width: 100%;
 	border: none;
 	font-size: 16px;
@@ -1405,58 +1469,69 @@ ol {
 }
 
 .comment-form textarea::-webkit-input-placeholder,
-.contact-form textarea::-webkit-input-placeholder {
+.contact-form textarea::-webkit-input-placeholder,
+.login-form textarea::-webkit-input-placeholder {
 	color: #b3b3b3;
 }
 
 .comment-form textarea::-moz-placeholder,
-.contact-form textarea::-moz-placeholder {
+.contact-form textarea::-moz-placeholder,
+.login-form textarea::-moz-placeholder {
 	color: #b3b3b3;
 }
 
 .comment-form textarea:-ms-input-placeholder,
-.contact-form textarea:-ms-input-placeholder {
+.contact-form textarea:-ms-input-placeholder,
+.login-form textarea:-ms-input-placeholder {
 	color: #b3b3b3;
 }
 
 .comment-form textarea::-ms-input-placeholder,
-.contact-form textarea::-ms-input-placeholder {
+.contact-form textarea::-ms-input-placeholder,
+.login-form textarea::-ms-input-placeholder {
 	color: #b3b3b3;
 }
 
 .comment-form textarea::placeholder,
-.contact-form textarea::placeholder {
+.contact-form textarea::placeholder,
+.login-form textarea::placeholder {
 	color: #b3b3b3;
 }
 
 .comment-form textarea:focus,
-.contact-form textarea:focus {
+.contact-form textarea:focus,
+.login-form textarea:focus {
 	background: #ffffff;
 	color: #0d0a27;
 }
 
 .comment-form textarea:focus::-webkit-input-placeholder,
-.contact-form textarea:focus::-webkit-input-placeholder {
+.contact-form textarea:focus::-webkit-input-placeholder,
+.login-form textarea:focus::-webkit-input-placeholder {
 	color: #0d0a27;
 }
 
 .comment-form textarea:focus::-moz-placeholder,
-.contact-form textarea:focus::-moz-placeholder {
+.contact-form textarea:focus::-moz-placeholder,
+.login-form textarea:focus::-moz-placeholder {
 	color: #0d0a27;
 }
 
 .comment-form textarea:focus:-ms-input-placeholder,
-.contact-form textarea:focus:-ms-input-placeholder {
+.contact-form textarea:focus:-ms-input-placeholder,
+.login-form textarea:focus:-ms-input-placeholder {
 	color: #0d0a27;
 }
 
 .comment-form textarea:focus::-ms-input-placeholder,
-.contact-form textarea:focus::-ms-input-placeholder {
+.contact-form textarea:focus::-ms-input-placeholder,
+.login-form textarea:focus::-ms-input-placeholder {
 	color: #0d0a27;
 }
 
 .comment-form textarea:focus::placeholder,
-.contact-form textarea:focus::placeholder {
+.contact-form textarea:focus::placeholder,
+.login-form textarea:focus::placeholder {
 	color: #0d0a27;
 }
 

@@ -38,6 +38,12 @@
                         <a href="#">
                             <img src="/static/img/ix.jpg" alt="">
                         </a>
+                        {% if user == 0 %}
+                            <a href="/login" class="login">Log In</a>
+                        {% else %}
+                            <a href="/explore" class="login">Log Out</a>
+                        {% endif %} 
+                        
                     </div>
                 </div>
                 <div class="col-lg-10 col-md-10">
