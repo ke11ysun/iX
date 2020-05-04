@@ -38,14 +38,13 @@ def explore(user_id=0):
     
     # tuple of recommended movie ids, sorted descendingly by recommendation scores:
     # mids = tuple(recmmend_movies.movie_id)
-    # kelly: I can't get recommendation from kaixi's code, so use some mids to test 
-    # kelly: from ross's db the only workable mids are 1, 6, 8, 12, 14, 15, 21, 28, 33, 44, 54, 107, 352
+    # kelly: from db the only workable mids are 1, 6, 8, 12, 14, 15, 21, 28, 33, 44, 54, 107, 352
     mids = tuple(np.random.choice([0, 1, 14, 19, 16, 10, 29, 5, 36, 42, 62, 11, 106], size=6, replace=False))
-    candidates = [1, 6, 8, 12, 14, 15, 21, 28, 33, 44, 54, 107, 352]
-    if user_id != 0:
-        mids = tuple(np.random.choice(candidates, size=6, replace=False))
-    else:
-        mids = tuple(candidates)
+    # candidates = [1, 6, 8, 12, 14, 15, 21, 28, 33, 44, 54, 107, 352]
+    # if user_id != 0:
+    #     mids = tuple(np.random.choice(candidates, size=6, replace=False))
+    # else:
+    #     mids = tuple(candidates)
     print('recommend mids:\n', mids)
     
     # select movies of which ids are in mids:

@@ -61,14 +61,14 @@ def select_seats(show, num_tickets, conn):
     for i in range(start, len(rows)):
         seat_map.append(rows[i])
 
-    # store back to db  
-    seat_map = ';'.join(seat_map)
-    query = "UPDATE shows \
-             SET seat_map = \"{}\" \
-             WHERE id = {}".format(seat_map, show['sid']) 
-    cur = conn.cursor()
-    cur.execute(query)
-    conn.commit()
+    # # store back to db  
+    # seat_map = ';'.join(seat_map)
+    # query = "UPDATE shows \
+    #          SET seat_map = \"{}\" \
+    #          WHERE id = {}".format(seat_map, show['sid']) 
+    # cur = conn.cursor()
+    # cur.execute(query)
+    # conn.commit()
 
     # # test: reload check change
     # query = "SELECT seat_map FROM shows WHERE id = {}".format(show['sid'])
