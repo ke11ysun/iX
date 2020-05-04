@@ -127,6 +127,13 @@ def get_movies(conn, mids=(1, 6, 8, 12, 14, 15, 21, 28, 33, 44, 54, 107, 352)):
     movies = cur.fetchall()
     return movies
 
+def get_mname(conn, mid):
+    cur = conn.cursor()
+    query = "SELECT * FROM movies WHERE id IS {} LIMIT 1".format(mid)
+    cur.execute(query)
+    movie = cur.fetchall()
+    return movie[0]['name']
+
 def safe_cast(form, key, default, try_int=False):
     try:
         if try_int: return int(form[key])

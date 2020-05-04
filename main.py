@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, request, session, url_for
-from util import filter_shows, get_movies, safe_cast, update_purchase, get_purchase
+from util import filter_shows, get_movies, safe_cast, update_purchase, get_purchase, get_mname
 from movie_recommender import recommend_movie
 import numpy as np
 import sqlite3
@@ -55,10 +55,18 @@ def explore(user_id=0):
 def login():
     return render_template("login.html")
 
-@app.route("/form/<mname>", methods=['POST', 'GET'])
-def form(mname):
+@app.route("/form/<mid>", methods=['POST', 'GET'])
+def form(mid):
+    mname = get_mname(conn, mid)
+    print("MID -> mname::")
+    print(mname)
     session['mname'] = mname
-    return render_template("form.html", mname=mname)
+    session['mid'] = mid
+    return render_template("form.html", mid=mid, mname=mname)
+# @app.route("/form/<mname>", methods=['POST', 'GET'])
+# def form(mname):
+#     session['mname'] = mname
+#     return render_template("form.html", mname=mname)
 
 @app.route("/form/<mname>/<random>", methods=['POST', 'GET'])
 def link_form(mname, random):
