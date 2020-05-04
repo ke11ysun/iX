@@ -145,7 +145,7 @@
                 <div class="container">
                     <div class="member-item set-bg" data-setbg="/static/img/member/movie-{{movies[i]['id']}}.jpg">
                         <div class="mi-text">
-                            <p>After staging his own suicide, a crazed scientist uses his power to become invisible to stalk and terrorize his ex-girlfriend. When the police refuse to believe her story, she decides to take matters into her own hands and fight back.</p>
+                            <p>{{movies[i]['description']}}</p>
                             <div class="mt-title">
                             </div>
                                 <a href="/form/{{movies[i]['name']}}" class="primary-btn">Get Tickets</a>
@@ -153,7 +153,7 @@
                     </div>
                     <div class="member-intro">
                         <h4><b>{{movies[i]['name']}}</b></h4>
-                        <span>{{movies[i]['genre']}} ‧ 2h 5m</span>
+                        <span>{{movies[i]['genre']}} ‧ {{movies[i]['time_']}}</span>
                     </div>
                 </div>
                 </div>
