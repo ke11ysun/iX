@@ -24,11 +24,13 @@ def index():
     title = "iX"
     return render_template("index.html", title=title)
 
-@app.route("/explore", methods=['POST', 'GET'])
-def explore():
+@app.route("/explore/", methods=['POST', 'GET'])
+@app.route("/explore/<user_id>", methods=['POST', 'GET'])
+def explore(user_id=0):
     ## if logged in and user_id in session:
     # user_id = session['user_id'] 
-    user_id = 0
+    # user_id = 0
+    print("user id: ", user_id)
     recmmend_movies = recommend_movie(user_id=user_id,
                            recommend_range=None,
                            recommend_number=5)
@@ -38,12 +40,20 @@ def explore():
     # mids = tuple(recmmend_movies.movie_id)
     # kelly: I can't get recommendation from kaixi's code, so use some mids to test 
     # kelly: from ross's db the only workable mids are 1, 6, 8, 12, 14, 15, 21, 28, 33, 44, 54, 107, 352
-    mids = tuple(np.random.choice([1, 6, 8, 12, 14, 15, 21, 28, 33, 44, 54, 107, 352], size=6, replace=False))
+    candidates = [1, 6, 8, 12, 14, 15, 21, 28, 33, 44, 54, 107, 352]
+    if user_id != 0:
+        mids = tuple(np.random.choice(candidates, size=6, replace=False))
+    else:
+        mids = tuple(candidates)
     print('recommend mids:\n', mids)
     
     # select movies of which ids are in mids:
     movies = get_movies(conn, mids)
-    return render_template("explore.html", len=len(movies), movies=movies)
+    return render_template("explore.html", len=len(movies), movies=movies, user=user_id)
+
+@app.route("/login", methods=['POST', 'GET'])
+def login():
+    return render_template("login.html")
 
 @app.route("/form/<mname>", methods=['POST', 'GET'])
 def form(mname):
