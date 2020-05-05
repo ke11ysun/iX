@@ -106,7 +106,8 @@ def tickets():
     update_purchase(conn, preference)
 
     showings = filter_shows(mname, preference, conn)
-    return render_template("tickets.html", len=len(showings), showings=showings, mname=mname)
+    return render_template("tickets.html", len=len(showings), 
+        showings=showings, mname=mname, mid=session['mid'])
 
 @app.route("/tickets/<mname>", methods=['GET'])
 def tickets_refresh(mname):
