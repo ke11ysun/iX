@@ -39,12 +39,12 @@ def explore(user_id=0):
     # tuple of recommended movie ids, sorted descendingly by recommendation scores:
     # mids = tuple(recmmend_movies.movie_id)
     # kelly: from db the only workable mids are 1, 6, 8, 12, 14, 15, 21, 28, 33, 44, 54, 107, 352
-    mids = tuple(np.random.choice([0, 1, 14, 19, 16, 10, 29, 5, 36, 42, 62, 11, 106], size=6, replace=False))
-    # candidates = [1, 6, 8, 12, 14, 15, 21, 28, 33, 44, 54, 107, 352]
-    # if user_id != 0:
-    #     mids = tuple(np.random.choice(candidates, size=6, replace=False))
-    # else:
-    #     mids = tuple(candidates)
+    # mids = tuple(np.random.choice([0, 1, 14, 19, 16, 10, 29, 5, 36, 42, 62, 11, 106], size=6, replace=False))
+    candidates = [0, 14, 19, 16, 10, 29, 5, 36, 42, 62, 11, 106]
+    if user_id != 0:
+        mids = tuple([1] + np.random.choice(candidates, size=5, replace=False).tolist())
+    else:
+        mids = tuple(candidates)
     print('recommend mids:\n', mids)
     
     # select movies of which ids are in mids:
