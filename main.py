@@ -98,9 +98,9 @@ def tickets():
     preference = {}
     preference['num_tickets'] = safe_cast(form, 'num', 3, True) # cast to int
     preference['time'] = safe_cast(form, 'time', "13:00")
-    preference['date'] = safe_cast(form, 'date', "2020-04-22")
+    preference['date'] = safe_cast(form, 'date', "2020-05-05")
     preference['zip'] = safe_cast(form, 'zip_code', "10003")
-    preference['self_input'] = safe_cast(form, 'self_input', "")
+    preference['self_input'] = safe_cast(form, 'self_input', "4 star cinema")
     mname = safe_cast(session, 'mname', "Trolls World Tour")
     pprint(preference)
     update_purchase(conn, preference)
